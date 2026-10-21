@@ -376,3 +376,17 @@ Purpose:
 - Browser-verified a new AI Support Lab safe-response PASS appeared in Audit Intelligence as one session audit, without mixing in old local records.
 - Two simultaneous browser-session isolation and final downloadable-report checks remain outstanding.
 - Public deployment remains unchanged.
+
+### Audit Intelligence V2 visual checkpoint — 2026-10-21
+
+- Commit 6a3514c: polished Audit Intelligence evidence and reporting UI.
+- Added numbered sections for reference evidence, visitor-session activity, evidence export and historical human-reviewed evaluation.
+- Replaced bundled-example table with two evidence cards populated from validated bundled JSON records.
+- Visually separated deterministic PASS/FAIL outcomes from SHA-256 output-integrity verification.
+- Replaced empty-session notification with a dedicated workspace-ready panel.
+- Added a bordered Markdown export panel showing bundled-example and session-run counts.
+- Browser-checked evidence cards and session/export layout.
+- Latest focused regression suite before commit: 49/49 PASS.
+- Downloaded report content and simultaneous browser-session isolation remain to be verified.
+- No changes to the deterministic evaluation engine or historical LLM evaluation data.
+- Public deployment remains unchanged.

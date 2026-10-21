@@ -390,3 +390,14 @@ Purpose:
 - Downloaded report content and simultaneous browser-session isolation remain to be verified.
 - No changes to the deterministic evaluation engine or historical LLM evaluation data.
 - Public deployment remains unchanged.
+
+### Report and browser-session verification — 2026-10-21
+
+- Corrected Markdown report headings so combined bundled examples and visitor-generated records are described as evidence entries, not exclusively recorded runs.
+- Added regression coverage for combined-evidence terminology.
+- Focused regression suite: 50/50 PASS.
+- Verified generated report content in memory for a fresh session (2 bundled examples, 0 visitor runs) and a session with one additional synthetic audit (3 total entries).
+- Browser-tested two separate sessions: port 8501 displayed one FAIL audit; port 8502 displayed zero visitor-generated audits.
+- No cross-session audit appeared in the tested browser views.
+- This is a functional isolation check, not a comprehensive security or concurrency certification.
+- Public deployment remains unchanged.

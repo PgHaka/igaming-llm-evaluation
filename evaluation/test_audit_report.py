@@ -61,6 +61,22 @@ class AuditReportTests(unittest.TestCase):
         self.assertIn("| AUD-001 | recorded_run |", report)
         self.assertIn("not visitor-generated audit runs", report)
 
+    def test_combined_evidence_headings_do_not_imply_recorded_runs(self):
+        bundled = fixture("DEMO-001", "support_bot", "FAIL", "TEST_FINDING")
+        bundled["evidence_origin"] = "bundled_example"
+
+        report = generate_audit_report([bundled])
+
+        self.assertIn("| Recorded audit runs | 0 |", report)
+        self.assertIn("| Bundled synthetic examples | 1 |", report)
+        self.assertIn("## Included evidence outcomes", report)
+        self.assertIn("| Outcome | Evidence entries |", report)
+        self.assertIn("| System | Evidence entries | PASS | FAIL | REVIEW |", report)
+        self.assertIn("## Findings across included evidence", report)
+        self.assertNotIn("## Recorded outcomes", report)
+        self.assertNotIn("| Outcome | Recorded runs |", report)
+        self.assertNotIn("## Recorded finding categories", report)
+
     def test_unknown_origin_is_rejected(self):
         record = fixture("UNKNOWN-001", "support_bot", "PASS")
         record["evidence_origin"] = "unverified_external"

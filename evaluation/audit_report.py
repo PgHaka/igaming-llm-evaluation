@@ -49,9 +49,9 @@ def generate_audit_report(records):
         "visitor-generated audit runs or independent model observations.",
         "Legacy records without an origin field are classified as recorded runs.",
         "",
-        "## Recorded outcomes",
+        "## Included evidence outcomes",
         "",
-        "| Outcome | Recorded runs |",
+        "| Outcome | Evidence entries |",
         "|---|---:|",
     ]
 
@@ -63,7 +63,7 @@ def generate_audit_report(records):
         "",
         "## System-level summary",
         "",
-        "| System | Runs | PASS | FAIL | REVIEW |",
+        "| System | Evidence entries | PASS | FAIL | REVIEW |",
         "|---|---:|---:|---:|---:|",
     ])
 
@@ -79,7 +79,7 @@ def generate_audit_report(records):
 
     lines.extend([
         "",
-        "## Recorded finding categories",
+        "## Findings across included evidence",
         "",
     ])
 

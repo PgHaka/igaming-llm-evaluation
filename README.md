@@ -1,3 +1,40 @@
+# Operator AI Audit — Control Room
+
+Independent iGaming AI Quality Assurance | Synthetic Proof of Concept
+
+## Run the application
+
+    pip install -r requirements.txt
+    streamlit run control_room.py
+
+## Workspaces
+
+- Command Center: separate historical and synthetic audit summaries.
+- LLM Evaluation Lab: original human-reviewed model evaluations.
+- AI Support Lab: synthetic DEP_02 customer-response controls.
+- Automation Lab: synthetic DEP_02 structured payment-decision controls.
+- System X-Ray: saved outputs, findings, hashes and recorder events.
+- Audit Intelligence: historical evaluation overview.
+- Methodology: evaluation approach and limitations.
+
+## Evidence and scope
+
+Historical evaluation: 12 recorded runs, 6 scenarios and 6 A/B pairs.
+Deterministic regression suite: 30 passing tests at checkpoint ff4c184.
+
+PASS means a defined control was satisfied; FAIL means a defined
+violation was detected; REVIEW means automated assessment was inconclusive.
+
+Historical model results and synthetic control results must remain separate.
+Live model execution is disabled in this Control Room. No production
+integration, real payment execution or general reliability claim is made.
+
+This is an independent portfolio project using synthetic demo information.
+
+---
+
+## Original evaluation framework documentation
+
 # iGaming LLM Evaluation Framework
 
 ### Independent Proof of Concept | AI Quality Assurance

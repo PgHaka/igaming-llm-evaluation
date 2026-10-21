@@ -97,6 +97,7 @@ def record_audit(case_id, system_type, output, execution_mode="control"):
         "run_id": run_id,
         "recorded_at_utc": timestamp,
         "evidence_type": "synthetic_offline_audit",
+        "evidence_origin": "recorded_run",
         "source_claim": (
             "Supplied fixture" if execution_mode == "control"
             else "Supplied replay output; provenance not independently verified"

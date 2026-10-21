@@ -13,6 +13,7 @@ from evaluation.evidence_recorder import (
     EVIDENCE_DIR, record_audit, verify_output_integrity,
 )
 from evaluation.audit_report import generate_audit_report
+from evaluation.demo_loader import load_bundled_examples
 from ui.legacy_eval import render as render_legacy_eval
 from ui.legacy_eval import load_data
 
@@ -390,6 +391,7 @@ st.sidebar.caption("MODE: OFFLINE CONTROL")
 st.sidebar.caption("LIVE MODEL EXECUTION: DISABLED")
 
 records = load_evidence()
+bundled_examples = load_bundled_examples()
 
 st.markdown("# Operator AI Audit")
 st.caption(
@@ -523,8 +525,35 @@ elif page == "Audit Intelligence":
         "human-reviewed evaluations as separate evidence streams."
     )
 
-    st.markdown("### Synthetic audit intelligence")
-    st.caption("LOCAL OFFLINE CONTROL EVIDENCE · NOT PRODUCTION MONITORING")
+    st.markdown("### Bundled synthetic examples")
+    st.caption(
+        "TWO PRE-SUPPLIED DEMONSTRATION FIXTURES · NOT VISITOR-GENERATED "
+        "RUNS OR LIVE OPERATOR OBSERVATIONS"
+    )
+    st.dataframe(
+        [
+            {
+                "Example": r["run_id"],
+                "System": r["system_type"],
+                "Control result": r["evaluation"]["result"],
+                "Origin": "Bundled synthetic example",
+                "Output integrity": (
+                    "VERIFIED" if verify_output_integrity(r) else "MISMATCH"
+                ),
+            }
+            for r in bundled_examples
+        ],
+        use_container_width=True,
+        hide_index=True,
+    )
+    st.caption(
+        "Open System X-Ray to inspect each example's output, findings "
+        "and four observable recorder events."
+    )
+
+    st.divider()
+    st.markdown("### Recorded synthetic audit runs")
+    st.caption("LOCALLY RECORDED OFFLINE CONTROLS · NOT PRODUCTION MONITORING")
 
     counts = {
         status: sum(
@@ -624,7 +653,7 @@ elif page == "Audit Intelligence":
         "recorded synthetic offline audit evidence."
     )
 
-    report_content = generate_audit_report(records)
+    report_content = generate_audit_report(bundled_examples + records)
 
     st.download_button(
         label="DOWNLOAD AUDIT REPORT (.MD)",
@@ -636,8 +665,9 @@ elif page == "Audit Intelligence":
     )
 
     st.caption(
-        "The report contains only locally recorded synthetic audit "
-        "results. Historical model evaluations are excluded."
+        "The report separately identifies bundled demonstration examples "
+        "and locally recorded synthetic runs. Historical model evaluations "
+        "are excluded."
     )
 
     st.divider()
@@ -1062,15 +1092,17 @@ else:
         "This is not a model chain-of-thought viewer."
     )
 
-    if not records:
-        st.info("Run a synthetic audit in either Lab to generate evidence.")
+    inspectable_records = records + bundled_examples
+    if not inspectable_records:
+        st.info("No synthetic audit evidence available.")
     else:
         labels = {
             r["run_id"]: (
                 f"{r['evaluation']['result']}  /  "
-                f"{r['system_type']}  /  {r['run_id']}"
+                f"{r['system_type']}  /  {r['run_id']}  /  "
+                f"{r.get('evidence_origin', 'recorded_run')}"
             )
-            for r in records
+            for r in inspectable_records
         }
 
         latest = st.session_state.get("latest_audit_id")
@@ -1085,6 +1117,6 @@ else:
         )
 
         selected_record = next(
-            r for r in records if r["run_id"] == selected
+            r for r in inspectable_records if r["run_id"] == selected
         )
         show_evidence(selected_record)

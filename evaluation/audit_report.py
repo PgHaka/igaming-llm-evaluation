@@ -22,12 +22,32 @@ def generate_audit_report(records):
 
     generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
+    origins = Counter(
+        r.get("evidence_origin", "recorded_run") for r in records
+    )
+    unknown_origins = set(origins) - {"recorded_run", "bundled_example"}
+    if unknown_origins:
+        raise ValueError(
+            f"Unsupported evidence origins: {sorted(unknown_origins)}"
+        )
+
     lines = [
         "# Operator AI Audit — Evidence Summary",
         "",
         f"Generated: {generated}",
         "",
         "**Evidence scope:** Synthetic offline audit records only.",
+        "",
+        "## Evidence origin",
+        "",
+        "| Origin | Entries |",
+        "|---|---:|",
+        f"| Recorded audit runs | {origins['recorded_run']} |",
+        f"| Bundled synthetic examples | {origins['bundled_example']} |",
+        "",
+        "Bundled examples are supplied demonstration fixtures, not "
+        "visitor-generated audit runs or independent model observations.",
+        "Legacy records without an origin field are classified as recorded runs.",
         "",
         "## Recorded outcomes",
         "",
@@ -79,13 +99,15 @@ def generate_audit_report(records):
         "",
         "## Evidence register",
         "",
-        "| Run ID | System | Result | Mode | Output SHA-256 |",
-        "|---|---|---|---|---|",
+        "| Run ID | Origin | System | Result | Mode | Output SHA-256 |",
+        "|---|---|---|---|---|---|",
     ])
 
     for record in records:
         lines.append(
-            f"| {record['run_id']} | {record['system_type']} | "
+            f"| {record['run_id']} | "
+            f"{record.get('evidence_origin', 'recorded_run')} | "
+            f"{record['system_type']} | "
             f"{record['evaluation']['result']} | "
             f"{record['execution_mode']} | "
             f"`{record['output_sha256']}` |"

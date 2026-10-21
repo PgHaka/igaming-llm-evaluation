@@ -47,6 +47,26 @@ class AuditReportTests(unittest.TestCase):
         self.assertIn("AUD-TEST-001", report)
         self.assertIn("a" * 64, report)
 
+    def test_bundled_examples_are_identified_separately(self):
+        bundled = fixture("DEMO-001", "support_bot", "FAIL")
+        bundled["evidence_origin"] = "bundled_example"
+        recorded = fixture("AUD-001", "payment_automation", "PASS")
+
+        report = generate_audit_report([bundled, recorded])
+
+        self.assertIn("| Recorded audit runs | 1 |", report)
+        self.assertIn("| Bundled synthetic examples | 1 |", report)
+        self.assertIn("| **Total** | **2** |", report)
+        self.assertIn("| DEMO-001 | bundled_example |", report)
+        self.assertIn("| AUD-001 | recorded_run |", report)
+        self.assertIn("not visitor-generated audit runs", report)
+
+    def test_unknown_origin_is_rejected(self):
+        record = fixture("UNKNOWN-001", "support_bot", "PASS")
+        record["evidence_origin"] = "unverified_external"
+        with self.assertRaises(ValueError):
+            generate_audit_report([record])
+
     def test_limitations_are_explicit(self):
         report = generate_audit_report([])
         self.assertIn("not independent model-performance observations", report)

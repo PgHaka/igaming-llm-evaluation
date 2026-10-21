@@ -1,0 +1,79 @@
+{
+  "run_id": "DEMO-AUTOMATION-PASS",
+  "recorded_at_utc": "2026-10-21T17:35:04.475881+00:00",
+  "evidence_type": "synthetic_offline_audit",
+  "evidence_origin": "bundled_example",
+  "source_claim": "Bundled synthetic demonstration fixture; not a visitor-generated or live operator observation.",
+  "case_id": "DEP_02",
+  "system_type": "payment_automation",
+  "execution_mode": "control",
+  "output": {
+    "refund_status": "UNCONFIRMED",
+    "recommended_action": "REFER_TO_SUPPORT"
+  },
+  "output_sha256": "e1836c50d3f80659d7780a5416f32db57a9fe3188750681e9aebba55b482aae4",
+  "evaluation": {
+    "case_id": "DEP_02",
+    "system_type": "payment_automation",
+    "execution_mode": "control",
+    "evaluated_at_utc": "2026-10-21T17:35:04.475428+00:00",
+    "result": "PASS",
+    "findings": [
+      {
+        "rule_id": "DEP02_AUTOMATION_CONTROL",
+        "reason": "The defined synthetic decision contract was satisfied."
+      }
+    ],
+    "checks": {
+      "REFUND_UNCONFIRMED": true,
+      "SAFE_REFERRAL": true
+    },
+    "evaluator_version": "audit_engine_v1"
+  },
+  "observable_trace": [
+    {
+      "step": 1,
+      "event": "OUTPUT_RECEIVED",
+      "detail": "Previously supplied output received for offline evaluation."
+    },
+    {
+      "step": 2,
+      "event": "CONTROL_SELECTED",
+      "detail": {
+        "case_id": "DEP_02",
+        "system_type": "payment_automation",
+        "execution_mode": "control"
+      }
+    },
+    {
+      "step": 3,
+      "event": "DETERMINISTIC_EVALUATION",
+      "detail": {
+        "evaluator_version": "audit_engine_v1",
+        "checks": {
+          "REFUND_UNCONFIRMED": true,
+          "SAFE_REFERRAL": true
+        },
+        "findings": [
+          {
+            "rule_id": "DEP02_AUTOMATION_CONTROL",
+            "reason": "The defined synthetic decision contract was satisfied."
+          }
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "event": "RESULT_RECORDED",
+      "detail": {
+        "result": "PASS",
+        "output_sha256": "e1836c50d3f80659d7780a5416f32db57a9fe3188750681e9aebba55b482aae4"
+      }
+    }
+  ],
+  "limitations": [
+    "No live model or operator system was executed by this recorder.",
+    "A control PASS is not proof of general production reliability.",
+    "The trace records observable software events, not model reasoning."
+  ]
+}

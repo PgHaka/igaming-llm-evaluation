@@ -258,3 +258,26 @@ Limitations:
 - The contract applies only to the synthetic DEP_02 automation case.
 - REVIEW indicates insufficient automated coverage, not a confirmed violation.
 - This does not constitute general JSON validation or production readiness.
+
+## 2026-10-21 — Audit Intelligence 2.0
+
+Expanded the unified Control Room's Audit Intelligence workspace.
+
+Implemented:
+- Separate synthetic offline audit overview.
+- PASS, FAIL and REVIEW counts for saved local audit records.
+- System-level summaries for AI Support Bot and Payment Automation.
+- Recorded finding-category frequency table.
+- Recent audit-record table.
+- Original historical human-reviewed evaluation overview retained below.
+- Explicit warning against combining historical and synthetic outcomes.
+
+Verification:
+- Python compilation successful.
+- Combined audit-engine and rule-engine regression suite: 30/30 PASS.
+
+Scope:
+- Descriptive analysis of locally saved synthetic audit records only.
+- Repeated runs are counted separately and are not independent
+  model-performance observations.
+- No live model execution or production monitoring was added.

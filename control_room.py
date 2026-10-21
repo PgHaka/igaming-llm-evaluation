@@ -392,12 +392,114 @@ elif page == "LLM Evaluation Lab":
     render_legacy_eval("Test Explorer")
 
 elif page == "Audit Intelligence":
-    st.caption("HUMAN-REVIEWED HISTORICAL EVALUATION")
+    st.markdown("## Audit Intelligence")
+    st.write(
+        "Explore recorded synthetic control outcomes and historical "
+        "human-reviewed evaluations as separate evidence streams."
+    )
+
+    st.markdown("### Synthetic audit intelligence")
+    st.caption("LOCAL OFFLINE CONTROL EVIDENCE · NOT PRODUCTION MONITORING")
+
+    counts = {
+        status: sum(
+            r["evaluation"]["result"] == status for r in records
+        )
+        for status in ("PASS", "FAIL", "REVIEW")
+    }
+
+    cols = st.columns(4)
+    for col, (label, value) in zip(
+        cols,
+        [
+            ("RECORDED AUDITS", len(records)),
+            ("CONTROL PASS", counts["PASS"]),
+            ("DETECTED FAIL", counts["FAIL"]),
+            ("NEEDS REVIEW", counts["REVIEW"]),
+        ],
+    ):
+        col.metric(label, value)
+
+    if records:
+        st.markdown("#### System-level outcomes")
+        for system_type, title in (
+            ("support_bot", "AI Support Bot"),
+            ("payment_automation", "Payment Automation"),
+        ):
+            subset = [
+                r for r in records if r["system_type"] == system_type
+            ]
+            with st.container(border=True):
+                st.markdown(f"**{title}**")
+                a, b, c, d = st.columns(4)
+                a.metric("RUNS", len(subset))
+                for col, status in zip(
+                    (b, c, d), ("PASS", "FAIL", "REVIEW")
+                ):
+                    col.metric(
+                        status,
+                        sum(
+                            r["evaluation"]["result"] == status
+                            for r in subset
+                        ),
+                    )
+
+        st.markdown("#### Recorded finding categories")
+        finding_counts = {}
+        for record in records:
+            for finding in record["evaluation"]["findings"]:
+                rule_id = finding["rule_id"]
+                finding_counts[rule_id] = finding_counts.get(rule_id, 0) + 1
+
+        if finding_counts:
+            st.dataframe(
+                [
+                    {"Finding": name, "Occurrences": count}
+                    for name, count in sorted(
+                        finding_counts.items(),
+                        key=lambda item: (-item[1], item[0]),
+                    )
+                ],
+                use_container_width=True,
+                hide_index=True,
+            )
+        else:
+            st.info("No findings have been recorded.")
+
+        st.markdown("#### Recent audit records")
+        st.dataframe(
+            [
+                {
+                    "Recorded (UTC)": r["recorded_at_utc"],
+                    "Run ID": r["run_id"],
+                    "System": r["system_type"],
+                    "Result": r["evaluation"]["result"],
+                    "Mode": r["execution_mode"],
+                }
+                for r in records[:20]
+            ],
+            use_container_width=True,
+            hide_index=True,
+        )
+        st.caption(
+            "Counts describe saved local fixtures and control runs. "
+            "Repeated runs are counted separately; they are not "
+            "independent model-performance observations."
+        )
+    else:
+        st.info(
+            "No local audit records yet. Run a synthetic scenario "
+            "in AI Support Lab or Automation Lab."
+        )
+
+    st.divider()
+    st.markdown("### Historical LLM evaluation")
+    st.caption("SEPARATE HUMAN-REVIEWED RECORDS")
     render_legacy_eval("Overview")
     st.info(
-        "The historical human-reviewed results above are separate from "
-        "the synthetic deterministic controls shown in Command Center. "
-        "Their outcome counts must not be combined into one reliability metric."
+        "Historical model evaluations and synthetic deterministic "
+        "controls are separate evidence categories. Their outcomes "
+        "must not be combined into one reliability metric."
     )
 
 elif page == "Methodology":

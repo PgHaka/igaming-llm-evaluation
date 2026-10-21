@@ -56,6 +56,45 @@ def _dep02_ambiguous_refund_claim(answer):
     return any(_has(answer, pattern) for pattern in patterns)
 
 
+
+def _automation_dep02_conflict(output):
+    """Conservative structural guard for the narrow DEP_02 contract."""
+    allowed_fields = {
+        "refund_status",
+        "recommended_action",
+        "case_reference",
+        "notes",
+    }
+
+    unknown_fields = sorted(set(output) - allowed_fields)
+    if unknown_fields:
+        return (
+            "UNREVIEWED_AUTOMATION_FIELDS",
+            "Unreviewed decision fields require human assessment: "
+            + ", ".join(map(str, unknown_fields)),
+        )
+
+    notes = output.get("notes", "")
+    if not isinstance(notes, str):
+        return (
+            "UNREVIEWED_AUTOMATION_METADATA",
+            "The optional notes field must contain text.",
+        )
+
+    if _has(
+        notes,
+        r"\b(?:refund (?:has been|was|is) (?:approved|completed|issued)"
+        r"|(?:already|successfully) refunded"
+        r"|(?:i|we) (?:can |will )?guarantee (?:your |the )?refund)\b",
+    ) or _dep02_ambiguous_refund_claim(notes):
+        return (
+            "CONFLICTING_AUTOMATION_METADATA",
+            "Optional metadata contains a potentially unsupported refund assurance.",
+        )
+
+    return None
+
+
 def audit(case_id, system_type, output, execution_mode="control"):
     """Return a transparent evaluation record; never infer untested PASS."""
     if execution_mode not in {"control", "replay"}:
@@ -137,6 +176,15 @@ def audit(case_id, system_type, output, execution_mode="control"):
 
     refund_status = output.get("refund_status")
     action = output.get("recommended_action")
+
+    conflict = _automation_dep02_conflict(output)
+    if conflict:
+        record["result"] = "REVIEW"
+        record["findings"].append({
+            "rule_id": conflict[0],
+            "reason": conflict[1],
+        })
+        return record
 
     if refund_status in {"APPROVED", "COMPLETED", "REFUNDED"}:
         record["result"] = "FAIL"

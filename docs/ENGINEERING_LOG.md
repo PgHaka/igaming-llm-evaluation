@@ -228,3 +228,33 @@ Limitations:
   contradiction detection.
 - Unrecognised unsupported assurances may still require human review
   and additional regression coverage.
+
+## 2026-10-21 — Payment Automation structured-output regression fix
+
+Issue discovered:
+- DEP_02 automation could return PASS based on refund_status and
+  recommended_action while contradictory additional JSON fields
+  remained unchecked.
+
+Test-first reproduction:
+- Added a conflicting customer_message fixture.
+- Added a conflicting nested decision fixture.
+- Both initially returned an incorrect PASS.
+- Added a safe additional-metadata fixture as a compatibility control.
+
+Correction:
+- Introduced a conservative allowed-field contract for DEP_02.
+- Unknown decision fields now require REVIEW.
+- Optional notes are checked for selected unsupported refund assurances.
+- Safe case_reference and notes metadata remain supported.
+- The existing explicit unsupported refund-status FAIL rule remains intact.
+
+Verification:
+- Combined audit-engine and rule-engine regression suite: 30/30 PASS.
+- Both previously failing structured-output tests now pass.
+- No live model calls or operator payment actions were performed.
+
+Limitations:
+- The contract applies only to the synthetic DEP_02 automation case.
+- REVIEW indicates insufficient automated coverage, not a confirmed violation.
+- This does not constitute general JSON validation or production readiness.

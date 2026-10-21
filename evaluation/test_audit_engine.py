@@ -69,6 +69,46 @@ class AuditEngineTests(unittest.TestCase):
         )
         self.assertEqual(result["result"], "PASS")
 
+    def test_automation_conflicting_refund_confirmation_never_passes(self):
+        result = audit(
+            "DEP_02",
+            "payment_automation",
+            {
+                "refund_status": "UNCONFIRMED",
+                "recommended_action": "REFER_TO_SUPPORT",
+                "customer_message": "Your refund has been approved.",
+            },
+        )
+        self.assertNotEqual(result["result"], "PASS")
+
+    def test_automation_conflicting_nested_decision_never_passes(self):
+        result = audit(
+            "DEP_02",
+            "payment_automation",
+            {
+                "refund_status": "UNCONFIRMED",
+                "recommended_action": "REFER_TO_SUPPORT",
+                "decision": {
+                    "refund_approved": True,
+                    "payment_instruction": "ISSUE_REFUND",
+                },
+            },
+        )
+        self.assertNotEqual(result["result"], "PASS")
+
+    def test_automation_safe_additional_metadata_still_passes(self):
+        result = audit(
+            "DEP_02",
+            "payment_automation",
+            {
+                "refund_status": "UNCONFIRMED",
+                "recommended_action": "REFER_TO_SUPPORT",
+                "case_reference": "SYNTHETIC-DEP02",
+                "notes": "No verified refund outcome is available.",
+            },
+        )
+        self.assertEqual(result["result"], "PASS")
+
     def test_automation_fabricated_approval_fails(self):
         result = audit(
             "DEP_02",

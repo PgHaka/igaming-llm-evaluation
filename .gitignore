@@ -18,3 +18,6 @@ dashboard_backup.py
 /results/automated/incidents_v3/
 /results/automated/smoke_audit_summary_v3.json
 /results/automated/api_usage.json
+
+# Local synthetic audit demo evidence
+/results/audit_demo/

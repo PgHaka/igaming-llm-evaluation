@@ -113,3 +113,87 @@ retained to preserve the sequence of observations.
   Public Evidence Register entries E08 and E09 are PARTIAL_PASS.
 
 Local source: results/automated/smoke_audit_summary_v3.json
+
+## 2026-10-21 — Operator AI Audit master foundation, session 01
+
+Purpose:
+Build a reusable evaluation foundation for multiple AI-driven operator
+systems, beginning with support chatbots and payment automations.
+This is a synthetic proof-of-concept, not an authorised production audit.
+
+Implementation:
+- Added evaluation/audit_engine.py as a shared offline evaluation interface.
+- Preserved the existing deterministic rule_engine.py and Golden Dataset v2.
+- Added a narrowly scoped positive DEP_02 support-bot control.
+- Added a structured DEP_02 payment-automation decision control.
+- Added evaluation/test_audit_engine.py with 12 regression tests.
+- Added evaluation/evidence_recorder.py for local JSON evidence persistence.
+- Added /results/audit_demo/ to .gitignore.
+
+Observed verification:
+- New audit-engine tests: 12/12 PASS.
+- Existing rule-engine regression tests: 13/13 PASS.
+- Combined regression tests: 25/25 PASS.
+- Four synthetic end-to-end controls executed:
+  support safe PASS; support fabricated refund FAIL;
+  automation safe PASS; automation fabricated approval FAIL.
+- Four separate JSON evidence files were persisted.
+- Saved-output SHA-256 recalculation matched in all four records.
+- Observable trace: four events per record.
+- Git-ignore verification for local audit evidence: PASS.
+- Live API requests during these controls: 0.
+
+Limitations:
+- Golden Dataset v2 remains draft_requires_validation.
+- Positive PASS checks are narrow deterministic controls, not proof
+  of general semantic accuracy or production reliability.
+- CONTROL fixtures are synthetic, not actual model generations.
+- REPLAY mode accepts supplied outputs; provenance is not independently
+  verified by the recorder.
+- The observable trace is not the model's private reasoning.
+- Only DEP_02 has the new positive controls at this stage.
+- Existing v3 live-smoke evidence remains separate and unchanged.
+
+Next:
+Build Streamlit AI Control Room using actual audit-engine outputs and
+persisted evidence. Keep system adapters and presentation separate.
+
+## 2026-10-21 — Operator AI Audit unified UI and browser verification
+
+Implementation:
+- Added control_room.py as the unified Streamlit entry point.
+- Preserved the original dashboard.py unchanged.
+- Embedded the original human-reviewed evaluation views in ui/legacy_eval.py.
+- Integrated historical LLM Evaluation, Support Lab, Automation Lab,
+  System X-Ray, Audit Intelligence and Methodology into one navigation.
+- Added historical CSV metrics to Command Center, separately from
+  locally persisted synthetic deterministic controls.
+- Improved dark-theme input/sidebar contrast and historical chart accents.
+
+Observed browser verification:
+- Seven navigation views displayed without a visible page-level error.
+- Historical Audit Intelligence loaded 12 recorded runs, 6 scenarios
+  and 6 A/B pairs.
+- Support Lab safe fixture returned PASS.
+- Support Lab fabricated refund fixture returned FAIL with
+  FALSE_REFUND_CONFIRMATION.
+- Automation Lab safe fixture returned PASS.
+- Automation Lab fabricated approval fixture returned FAIL with
+  UNSUPPORTED_REFUND_DECISION.
+- System X-Ray displayed the Automation Lab FAIL evidence, evaluated
+  JSON output, finding, four observable recorder events and output hash.
+
+Scope and limitations:
+- These four browser tests used synthetic CONTROL fixtures, not live
+  model generations or operator systems.
+- X-Ray display was verified for the Automation Lab FAIL record;
+  exhaustive verification of all four new records is still pending.
+- The four-event trace describes the recorder/evaluator workflow,
+  not upstream operator execution or private model reasoning.
+- Positive PASS is limited to the explicitly implemented controls.
+- No production readiness or general reliability claim is made.
+
+Next:
+- Verify persisted evidence inventory and regression tests.
+- Improve historical chart background consistency.
+- Expand evaluation coverage conservatively before HIPTHER.

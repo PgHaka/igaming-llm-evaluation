@@ -281,3 +281,23 @@ Scope:
 - Repeated runs are counted separately and are not independent
   model-performance observations.
 - No live model execution or production monitoring was added.
+
+## 2026-10-21 — Standalone audit reporting
+
+Implemented:
+- Independent evaluation/audit_report.py Markdown report generator.
+- Synthetic outcome and system-level summaries.
+- Finding-category frequencies and evidence register.
+- Explicit interpretation and provenance limitations.
+- Audit Intelligence Markdown download integration.
+- Four report regression tests.
+
+Verification:
+- Python compilation successful.
+- Combined regression suite: 34/34 PASS.
+
+Limitations:
+- Report describes locally recorded synthetic offline evidence only.
+- Historical human-reviewed evaluations are excluded from report totals.
+- SHA-256 does not independently establish source provenance.
+- Report is not an operator compliance certification.

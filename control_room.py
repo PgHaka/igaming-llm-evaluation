@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from evaluation.evidence_recorder import EVIDENCE_DIR, record_audit
+from evaluation.audit_report import generate_audit_report
 from ui.legacy_eval import render as render_legacy_eval
 from ui.legacy_eval import load_data
 
@@ -491,6 +492,29 @@ elif page == "Audit Intelligence":
             "No local audit records yet. Run a synthetic scenario "
             "in AI Support Lab or Automation Lab."
         )
+
+    st.divider()
+    st.markdown("### Export audit report")
+    st.write(
+        "Generate a standalone Markdown summary of the currently "
+        "recorded synthetic offline audit evidence."
+    )
+
+    report_content = generate_audit_report(records)
+
+    st.download_button(
+        label="DOWNLOAD AUDIT REPORT (.MD)",
+        data=report_content,
+        file_name="operator_ai_audit_evidence_summary.md",
+        mime="text/markdown",
+        type="primary",
+        use_container_width=True,
+    )
+
+    st.caption(
+        "The report contains only locally recorded synthetic audit "
+        "results. Historical model evaluations are excluded."
+    )
 
     st.divider()
     st.markdown("### Historical LLM evaluation")

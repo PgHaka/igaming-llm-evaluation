@@ -197,3 +197,34 @@ Next:
 - Verify persisted evidence inventory and regression tests.
 - Improve historical chart background consistency.
 - Expand evaluation coverage conservatively before HIPTHER.
+
+## 2026-10-21 — DEP_02 contradictory-response regression fix
+
+Issue discovered:
+- The narrow positive support-bot control could return PASS when a
+  response contained all three required positive elements but also
+  included an unsupported refund assurance later in the answer.
+
+Test-first reproduction:
+- Added two regression cases covering an unverified tomorrow promise
+  and a conflicting assertion that the customer's money is on its way.
+- Both initially failed because the evaluator incorrectly returned PASS.
+
+Correction:
+- Added _dep02_ambiguous_refund_claim() to evaluation/audit_engine.py.
+- Selected unsupported refund assurances now trigger REVIEW before
+  the positive PASS decision.
+- Existing explicit prohibited assertions continue to use the
+  original deterministic FAIL rules.
+- Corrected a regex escaping error found during implementation.
+
+Verification:
+- New contradictory-response tests: 2/2 PASS after correction.
+- Combined audit-engine and rule-engine regression suite: 27/27 PASS.
+- No live model or operator-system calls were made.
+
+Limitations:
+- This is a narrow, pattern-based guard, not comprehensive semantic
+  contradiction detection.
+- Unrecognised unsupported assurances may still require human review
+  and additional regression coverage.

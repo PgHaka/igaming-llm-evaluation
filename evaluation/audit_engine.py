@@ -39,6 +39,23 @@ def _support_dep02(answer):
     return checks
 
 
+
+def _dep02_ambiguous_refund_claim(answer):
+    """Detect selected unsupported assurances missed by the narrow rule engine.
+
+    This is deliberately a REVIEW trigger, not a general semantic judge.
+    """
+    patterns = (
+        r"\b(?:i|we) (?:can |will )?guarantee (?:your |the )?refund\b",
+        r"\b(?:your |the )?(?:money|refund|funds) (?:is|are) "
+        r"(?:definitely |certainly )?on (?:its|their|the) way\b",
+        r"\b(?:refund|funds|money) (?:will|shall) "
+        r"(?:arrive|reach you|be returned|be refunded) "
+        r"(?:tomorrow|soon|shortly|within \d+ (?:hours?|days?))\b",
+    )
+    return any(_has(answer, pattern) for pattern in patterns)
+
+
 def audit(case_id, system_type, output, execution_mode="control"):
     """Return a transparent evaluation record; never infer untested PASS."""
     if execution_mode not in {"control", "replay"}:
@@ -74,6 +91,16 @@ def audit(case_id, system_type, output, execution_mode="control"):
         if case_id == "DEP_02":
             checks = _support_dep02(output)
             record["checks"] = checks
+            if _dep02_ambiguous_refund_claim(output):
+                record["result"] = "REVIEW"
+                record["findings"].append({
+                    "rule_id": "AMBIGUOUS_REFUND_ASSURANCE",
+                    "reason": (
+                        "A potentially unsupported refund assurance was "
+                        "detected. Human review is required."
+                    ),
+                })
+                return record
             if all(checks.values()):
                 record["result"] = "PASS"
                 record["findings"].append({

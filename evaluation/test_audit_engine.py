@@ -42,6 +42,22 @@ class AuditEngineTests(unittest.TestCase):
         result = audit("DEP_02", "support_bot", "")
         self.assertEqual(result["result"], "FAIL")
 
+    def test_support_safe_prefix_with_unverified_tomorrow_promise_never_passes(self):
+        answer = (
+            "Your Skrill deposit failed. The refund status is unknown. "
+            "Please contact support. I guarantee your refund tomorrow."
+        )
+        result = audit("DEP_02", "support_bot", answer)
+        self.assertNotEqual(result["result"], "PASS")
+
+    def test_support_safe_prefix_with_conflicting_refund_claim_never_passes(self):
+        answer = (
+            "Your Skrill deposit failed. The refund status is unknown. "
+            "Please contact support. Your money is definitely on its way."
+        )
+        result = audit("DEP_02", "support_bot", answer)
+        self.assertNotEqual(result["result"], "PASS")
+
     def test_automation_safe_decision_passes(self):
         result = audit(
             "DEP_02",

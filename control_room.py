@@ -513,41 +513,61 @@ elif page == "LLM Evaluation Lab":
     render_legacy_eval("Test Explorer")
 
 elif page == "Audit Intelligence":
+    st.caption("AUDIT INTELLIGENCE / EVIDENCE & REPORTING")
     st.markdown("## Audit Intelligence")
-    st.write(
-        "Explore recorded synthetic control outcomes and historical "
-        "human-reviewed evaluations as separate evidence streams."
+    st.markdown(
+        "A unified view of deterministic control outcomes, evidence "
+        "integrity and downloadable audit reporting."
     )
+    st.caption(
+        "SYNTHETIC OFFLINE ENVIRONMENT · NO LIVE OPERATOR MONITORING"
+    )
+    st.divider()
 
-    st.markdown("### Bundled synthetic examples")
+    st.caption("01 / REFERENCE EVIDENCE")
+    st.markdown("### Bundled demonstration evidence")
     st.caption(
         "TWO PRE-SUPPLIED DEMONSTRATION FIXTURES · NOT VISITOR-GENERATED "
         "RUNS OR LIVE OPERATOR OBSERVATIONS"
     )
-    st.dataframe(
-        [
-            {
-                "Example": r["run_id"],
-                "System": r["system_type"],
-                "Control result": r["evaluation"]["result"],
-                "Origin": "Bundled synthetic example",
-                "Output integrity": (
-                    "VERIFIED" if verify_output_integrity(r) else "MISMATCH"
-                ),
-            }
-            for r in bundled_examples
-        ],
-        use_container_width=True,
-        hide_index=True,
-    )
+    example_columns = st.columns(2, gap="medium")
+    for column, example in zip(example_columns, bundled_examples):
+        outcome = example["evaluation"]["result"]
+        integrity_ok = verify_output_integrity(example)
+        system_label = {
+            "support_bot": "AI SUPPORT BOT",
+            "payment_automation": "PAYMENT AUTOMATION",
+        }.get(example["system_type"], example["system_type"].upper())
+
+        with column:
+            with st.container(border=True):
+                st.caption(system_label + " / BUNDLED EXAMPLE")
+                if outcome == "FAIL":
+                    st.error("FAIL — CONTROL VIOLATION DETECTED")
+                elif outcome == "PASS":
+                    st.success("PASS — DEFINED CONTROL SATISFIED")
+                else:
+                    st.warning("REVIEW — MANUAL ASSESSMENT REQUIRED")
+                st.markdown(f"**{example['run_id']}**")
+                st.caption("PRE-SUPPLIED SYNTHETIC CONTROL FIXTURE")
+                st.divider()
+                st.caption("EVIDENCE INTEGRITY / NOT AN AUDIT OUTCOME")
+                if integrity_ok:
+                    st.markdown("**SHA-256 · VERIFIED**")
+                else:
+                    st.error("SHA-256 · MISMATCH")
     st.caption(
         "Open System X-Ray to inspect each example's output, findings "
         "and four observable recorder events."
     )
 
     st.divider()
-    st.markdown("### Recorded synthetic audit runs")
-    st.caption("LOCALLY RECORDED OFFLINE CONTROLS · NOT PRODUCTION MONITORING")
+    st.caption("02 / YOUR SESSION")
+    st.markdown("### Session audit activity")
+    st.caption(
+        "VISITOR-GENERATED OFFLINE CONTROLS · SESSION-ONLY STORAGE · "
+        "NOT PRODUCTION MONITORING"
+    )
 
     counts = {
         status: sum(
@@ -560,7 +580,7 @@ elif page == "Audit Intelligence":
     for col, (label, value) in zip(
         cols,
         [
-            ("RECORDED AUDITS", len(records)),
+            ("SESSION AUDITS", len(records)),
             ("CONTROL PASS", counts["PASS"]),
             ("DETECTED FAIL", counts["FAIL"]),
             ("NEEDS REVIEW", counts["REVIEW"]),
@@ -630,43 +650,59 @@ elif page == "Audit Intelligence":
             hide_index=True,
         )
         st.caption(
-            "Counts describe saved local fixtures and control runs. "
+            "Counts describe this session's synthetic control runs. "
             "Repeated runs are counted separately; they are not "
             "independent model-performance observations."
         )
     else:
-        st.info(
-            "No local audit records yet. Run a synthetic scenario "
-            "in AI Support Lab or Automation Lab."
+        with st.container(border=True):
+            st.caption("SESSION STATUS / READY")
+            st.markdown("#### Your audit workspace is ready")
+            st.write(
+                "No visitor-generated audit runs in this session yet. "
+                "Start with AI Support Lab or Automation Lab to create "
+                "your first synthetic control record."
+            )
+            st.caption(
+                "Bundled examples above remain separate from your session activity."
+            )
+
+    st.divider()
+    st.caption("03 / EVIDENCE EXPORT")
+    st.markdown("### Export audit report")
+
+    with st.container(border=True):
+        st.caption("AUDIT EVIDENCE / PORTABLE MARKDOWN REPORT")
+        st.markdown("#### Your evidence summary")
+        st.write(
+            "Export the two bundled synthetic examples and the audit "
+            "records generated during your current visitor session."
+        )
+
+        left, right = st.columns(2)
+        left.metric("BUNDLED EXAMPLES", len(bundled_examples))
+        right.metric("SESSION RUNS", len(records))
+
+        report_content = generate_audit_report(bundled_examples + records)
+
+        st.download_button(
+            label="DOWNLOAD AUDIT REPORT (.MD)",
+            data=report_content,
+            file_name="operator_ai_audit_evidence_summary.md",
+            mime="text/markdown",
+            type="primary",
+            use_container_width=True,
+        )
+
+        st.caption(
+            "The report labels each evidence origin separately. Historical "
+            "human-reviewed model evaluations are excluded. Session records "
+            "are not retained as a permanent server-side audit archive."
         )
 
     st.divider()
-    st.markdown("### Export audit report")
-    st.write(
-        "Generate a standalone Markdown summary of the currently "
-        "recorded synthetic offline audit evidence."
-    )
-
-    report_content = generate_audit_report(bundled_examples + records)
-
-    st.download_button(
-        label="DOWNLOAD AUDIT REPORT (.MD)",
-        data=report_content,
-        file_name="operator_ai_audit_evidence_summary.md",
-        mime="text/markdown",
-        type="primary",
-        use_container_width=True,
-    )
-
-    st.caption(
-        "The report separately identifies bundled demonstration examples "
-        "and locally recorded synthetic runs. Historical model evaluations "
-        "are excluded."
-    )
-
-    st.divider()
     with st.expander(
-        "Historical LLM evaluation — separate human-reviewed evidence",
+        "04 / Historical LLM evaluation — separate human-reviewed evidence",
         expanded=False,
     ):
         st.caption("SEPARATE HISTORICAL EVIDENCE STREAM")

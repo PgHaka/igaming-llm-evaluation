@@ -580,14 +580,17 @@ elif page == "Audit Intelligence":
     )
 
     st.divider()
-    st.markdown("### Historical LLM evaluation")
-    st.caption("SEPARATE HUMAN-REVIEWED RECORDS")
-    render_legacy_eval("Overview")
-    st.info(
-        "Historical model evaluations and synthetic deterministic "
-        "controls are separate evidence categories. Their outcomes "
-        "must not be combined into one reliability metric."
-    )
+    with st.expander(
+        "Historical LLM evaluation — separate human-reviewed evidence",
+        expanded=False,
+    ):
+        st.caption("SEPARATE HISTORICAL EVIDENCE STREAM")
+        st.info(
+            "Historical model evaluations and synthetic deterministic "
+            "controls are separate evidence categories. Their outcomes "
+            "must not be combined into one reliability metric."
+        )
+        render_legacy_eval("Overview")
 
 elif page == "Methodology":
     render_legacy_eval("Methodology")

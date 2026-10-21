@@ -332,3 +332,17 @@ Implemented:
 - Original historical evaluation documentation preserved.
 
 No evaluation results or audit-engine rules were changed.
+
+## 2026-10-21 — Audit Intelligence presentation refinement
+
+Moved the historical human-reviewed evaluation overview into a collapsed
+section below synthetic analytics and report export. The original historical
+data, calculations and charts remain unchanged.
+
+Verification:
+- Python compilation successful.
+- Combined regression suite: 40/40 PASS.
+
+Purpose:
+- Prioritise the current Operator AI Audit workflow during demonstrations.
+- Preserve access to historical work without combining evidence categories.

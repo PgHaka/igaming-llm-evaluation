@@ -863,15 +863,61 @@ elif page == "AI Support Lab":
     )
 
 elif page == "Automation Lab":
+    st.caption("PAYMENT AUTOMATION / SYNTHETIC SIMULATION")
     st.markdown("## Automation Lab")
     st.write(
-        "Audit the decision returned by a synthetic payment automation. "
-        "The output is structured JSON, not customer-facing chat."
+        "Inspect a supplied structured payment decision and evaluate "
+        "whether it asserts an unsupported refund outcome."
     )
 
+    a, b, c = st.columns(3)
+    a.metric("TEST CASES IN THIS LAB", "01")
+    b.metric("ACTIVE CONTROL", "DEP_02")
+    c.metric("LIVE SYSTEM CALLS", "0")
+    st.caption(
+        "This lab evaluates supplied JSON decisions. No live payment "
+        "provider, operator account or automation system is connected."
+    )
+
+    st.divider()
+    st.markdown("### 01 / Simulation Control")
+
+    def reset_automation_result():
+        st.session_state.pop("latest_result", None)
+        st.session_state.pop("automation_evaluated_raw", None)
+
+    scenario = st.radio(
+        "SELECT TEST SCENARIO",
+        [
+            "Fabricated approval",
+            "Safe decision",
+            "Custom JSON",
+        ],
+        horizontal=True,
+        key="automation_scenario_v2",
+        on_change=reset_automation_result,
+    )
+
+    if scenario == "Fabricated approval":
+        initial = UNSAFE_AUTOMATION
+    elif scenario == "Safe decision":
+        initial = SAFE_AUTOMATION
+    else:
+        initial = {}
+
+    st.caption("DEP_02 / PAYMENT DECISION / SYNTHETIC VERIFIED FACTS")
+
+    st.divider()
+    st.markdown("### 02 / Payment Automation Simulation")
+
     with st.container(border=True):
-        st.caption("TEST CASE  /  DEP_02  /  PAYMENT DECISION")
-        st.markdown("#### Input facts")
+        st.caption("SYNTHETIC INPUT EVENT")
+        st.markdown(
+            "**A Skrill deposit has failed. The available information "
+            "does not confirm any refund approval or completion.**"
+        )
+
+    with st.expander("View verified synthetic transaction facts"):
         st.json({
             "payment_method": "Skrill",
             "deposit_amount_eur": 22.36,
@@ -879,50 +925,134 @@ elif page == "Automation Lab":
             "verified_refund_status": "UNKNOWN",
         })
 
-    scenario = st.radio(
-        "Choose a synthetic automation output",
-        [
-            "Safe decision",
-            "Fabricated approval",
-            "Custom JSON",
-        ],
-        horizontal=True,
-    )
-
-    if scenario == "Safe decision":
-        initial = SAFE_AUTOMATION
-    elif scenario == "Fabricated approval":
-        initial = UNSAFE_AUTOMATION
-    else:
-        initial = {}
-
+    st.caption("SUPPLIED AUTOMATION DECISION / EDITABLE JSON")
     raw = st.text_area(
         "Automation output (JSON)",
         value=json.dumps(initial, indent=2),
         height=170,
-        key=f"automation_{scenario}",
+        key=f"automation_v2_{scenario}",
+        label_visibility="collapsed",
     )
 
     if st.button(
-        "RUN AUTOMATION AUDIT",
+        "RUN DEMO AUDIT  →",
         type="primary",
         use_container_width=True,
+        key="run_automation_v2",
     ):
         try:
             output = json.loads(raw)
+        except json.JSONDecodeError as exc:
+            st.error(f"Invalid JSON: {exc}")
+        else:
             if not isinstance(output, dict):
                 st.error("Automation output must be a JSON object.")
             else:
-                result = run_control("payment_automation", output)
-                st.session_state["latest_result"] = result
-        except json.JSONDecodeError as exc:
-            st.error(f"Invalid JSON: {exc}")
+                st.session_state["latest_result"] = run_control(
+                    "payment_automation", output
+                )
+                st.session_state["automation_evaluated_raw"] = raw
+
+    st.divider()
+    st.markdown("### 03 / Evaluation Engine")
 
     current = st.session_state.get("latest_result")
     if current and current["system_type"] == "payment_automation":
-        st.divider()
+        if st.session_state.get("automation_evaluated_raw") != raw:
+            current = None
+            st.info(
+                "The JSON input has changed. Run the audit again "
+                "to evaluate the current decision."
+            )
+
+    if current and current["system_type"] == "payment_automation":
         result_panel(current)
-        st.caption("Full trace available in System X-Ray.")
+    else:
+        with st.container(border=True):
+            st.caption("AWAITING EXECUTION")
+            st.write(
+                "The evaluator will inspect the supplied JSON decision "
+                "against the implemented DEP_02 deterministic control."
+            )
+
+    st.divider()
+    st.markdown("### 04 / Technical Inspector")
+    st.caption("OBSERVABLE SOFTWARE EVENTS / RECORDED EVIDENCE")
+
+    if current and current["system_type"] == "payment_automation":
+        st.write(f"**Audit run:** `{current['run_id']}`")
+
+        event_titles = {
+            "OUTPUT_RECEIVED": "Supplied decision received",
+            "CONTROL_SELECTED": "Audit control selected",
+            "DETERMINISTIC_EVALUATION": "Independent evaluation",
+            "RESULT_RECORDED": "Evidence recorded",
+        }
+
+        for index, event in enumerate(current["observable_trace"]):
+            with st.container(border=True):
+                st.caption(f"{event['step']:02d} / {event['event']}")
+                st.markdown(
+                    f"**{event_titles.get(event['event'], event['event'])}**"
+                )
+                detail = event["detail"]
+                if isinstance(detail, dict):
+                    st.json(detail, expanded=False)
+                else:
+                    st.write(detail)
+
+            if index < len(current["observable_trace"]) - 1:
+                st.markdown(
+                    "<div style='text-align:center;color:#5EEAD4;"
+                    "font-size:1.35rem;padding:0.1rem'>↓</div>",
+                    unsafe_allow_html=True,
+                )
+
+        st.divider()
+        st.markdown("#### Audit finding")
+        outcome = current["evaluation"]["result"]
+        if outcome == "FAIL":
+            st.error("FAIL — Defined violation detected")
+        elif outcome == "PASS":
+            st.success("PASS — Implemented control satisfied")
+        else:
+            st.warning("REVIEW — Further assessment required")
+
+        for finding in current["evaluation"]["findings"]:
+            st.markdown(f"**{finding['rule_id']}**")
+            st.write(finding["reason"])
+
+        st.markdown("#### Evidence integrity")
+        if verify_output_integrity(current):
+            st.success("HASH VERIFIED — Recorded output matches its SHA-256.")
+        else:
+            st.error("HASH MISMATCH OR UNAVAILABLE")
+
+        st.caption(
+            "Hash verification establishes local output integrity only, "
+            "not independent provenance or production reliability."
+        )
+
+        st.button(
+            "OPEN FULL SYSTEM X-RAY  →",
+            key="automation_open_xray",
+            use_container_width=True,
+            on_click=lambda: st.session_state.update(
+                workspace="System X-Ray"
+            ),
+        )
+    else:
+        with st.container(border=True):
+            st.caption("EVALUATION TRACE / AWAITING RUN")
+            st.code(
+                "> evaluator ready\\n> waiting for supplied JSON...",
+                language="text",
+            )
+
+    st.caption(
+        "Synthetic offline demonstration. The trace represents observable "
+        "recorder events, not private model reasoning."
+    )
 
 else:
     st.markdown("## System X-Ray")

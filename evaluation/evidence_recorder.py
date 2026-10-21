@@ -16,6 +16,29 @@ ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE_DIR = ROOT / "results/audit_demo"
 
 
+
+def calculate_output_hash(output):
+    """Reproduce the recorder's canonical output SHA-256."""
+    serialized = json.dumps(
+        output, ensure_ascii=False, sort_keys=True
+    )
+    return hashlib.sha256(serialized.encode("utf-8")).hexdigest()
+
+
+def verify_output_integrity(evidence):
+    """Check stored output against its recorded hash; not provenance."""
+    expected = evidence.get("output_sha256")
+    if not isinstance(expected, str) or len(expected) != 64:
+        return False
+    if "output" not in evidence:
+        return False
+    try:
+        actual = calculate_output_hash(evidence["output"])
+    except (TypeError, ValueError):
+        return False
+    return actual == expected
+
+
 def record_audit(case_id, system_type, output, execution_mode="control"):
     """Evaluate one supplied output and persist its observable evidence."""
 
@@ -32,13 +55,7 @@ def record_audit(case_id, system_type, output, execution_mode="control"):
     timestamp = datetime.now(timezone.utc).isoformat()
     run_id = f"AUD-{uuid.uuid4().hex[:12].upper()}"
 
-    serialized_output = json.dumps(
-        output, ensure_ascii=False, sort_keys=True
-    )
-
-    output_sha256 = hashlib.sha256(
-        serialized_output.encode("utf-8")
-    ).hexdigest()
+    output_sha256 = calculate_output_hash(output)
 
     trace = [
         {

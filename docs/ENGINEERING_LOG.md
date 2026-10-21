@@ -301,3 +301,22 @@ Limitations:
 - Historical human-reviewed evaluations are excluded from report totals.
 - SHA-256 does not independently establish source provenance.
 - Report is not an operator compliance certification.
+
+## 2026-10-21 — Evidence integrity verification
+
+Implemented:
+- Shared canonical SHA-256 calculation in the evidence recorder.
+- Non-mutating verification of recorded output against its stored hash.
+- System X-Ray statuses: HASH VERIFIED, HASH MISMATCH, HASH UNAVAILABLE.
+- Six dedicated integrity regression tests.
+- Explicit distinction between local integrity and source provenance.
+
+Verification:
+- Combined regression suite: 40/40 PASS.
+- Existing local synthetic audit records: 9/9 HASH VERIFIED.
+- Previously recorded evidence files were not modified.
+
+Limitations:
+- A matching hash establishes consistency with the stored digest only.
+- It does not independently authenticate the upstream output source.
+- No live model execution or production monitoring was added.

@@ -9,7 +9,9 @@ import streamlit as st
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
-from evaluation.evidence_recorder import EVIDENCE_DIR, record_audit
+from evaluation.evidence_recorder import (
+    EVIDENCE_DIR, record_audit, verify_output_integrity,
+)
 from evaluation.audit_report import generate_audit_report
 from ui.legacy_eval import render as render_legacy_eval
 from ui.legacy_eval import load_data
@@ -229,8 +231,28 @@ def show_evidence(record):
                 st.write(detail)
 
     st.markdown("#### Evidence integrity")
-    st.code(record["output_sha256"], language="text")
-    st.caption("SHA-256 of the serialized evaluated output.")
+    stored_hash = record.get("output_sha256")
+    hash_available = (
+        isinstance(stored_hash, str)
+        and len(stored_hash) == 64
+        and all(c in "0123456789abcdefABCDEF" for c in stored_hash)
+        and "output" in record
+    )
+
+    if not hash_available:
+        st.warning("HASH UNAVAILABLE — output or valid SHA-256 is missing.")
+    elif verify_output_integrity(record):
+        st.success("HASH VERIFIED — recorded output matches its stored SHA-256.")
+    else:
+        st.error("HASH MISMATCH — recorded output does not match its stored SHA-256.")
+
+    if stored_hash is not None:
+        st.code(str(stored_hash), language="text")
+
+    st.caption(
+        "This verifies local output integrity only. It does not "
+        "independently establish the output's source or provenance."
+    )
 
     with st.expander("Limitations and raw evidence"):
         for limitation in record["limitations"]:

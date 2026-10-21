@@ -245,17 +245,9 @@ UNSAFE_AUTOMATION = {
 
 
 def load_evidence():
-    records = []
-    if EVIDENCE_DIR.exists():
-        for path in EVIDENCE_DIR.glob("AUD-*.json"):
-            try:
-                record = json.loads(path.read_text(encoding="utf-8"))
-                if record.get("evidence_type") == "synthetic_offline_audit":
-                    records.append(record)
-            except (OSError, ValueError):
-                continue
+    """Return only this visitor's non-persistent Control Room audit runs."""
     return sorted(
-        records,
+        st.session_state.get("session_audit_records", []),
         key=lambda row: row.get("recorded_at_utc", ""),
         reverse=True,
     )
@@ -361,7 +353,9 @@ def run_control(system_type, output):
         system_type=system_type,
         output=output,
         execution_mode="control",
+        persist=False,
     )
+    st.session_state.setdefault("session_audit_records", []).append(evidence)
     st.session_state["latest_audit_id"] = evidence["run_id"]
     return evidence
 

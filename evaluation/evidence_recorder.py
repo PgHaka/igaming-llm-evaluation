@@ -39,7 +39,9 @@ def verify_output_integrity(evidence):
     return actual == expected
 
 
-def record_audit(case_id, system_type, output, execution_mode="control"):
+def record_audit(
+    case_id, system_type, output, execution_mode="control", persist=True
+):
     """Evaluate one supplied output and persist its observable evidence."""
 
     if execution_mode not in {"control", "replay"}:
@@ -115,6 +117,9 @@ def record_audit(case_id, system_type, output, execution_mode="control"):
             "The trace records observable software events, not model reasoning.",
         ],
     }
+
+    if not persist:
+        return evidence, None
 
     EVIDENCE_DIR.mkdir(parents=True, exist_ok=True)
     destination = EVIDENCE_DIR / f"{run_id}.json"

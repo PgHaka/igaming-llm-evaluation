@@ -346,3 +346,33 @@ Verification:
 Purpose:
 - Prioritise the current Operator AI Audit workflow during demonstrations.
 - Preserve access to historical work without combining evidence categories.
+
+## HIPTHER Control Room — bundled demo evidence and publication preparation (2026-10-21)
+
+- Completed matching four-stage interfaces for AI Support Lab and Payment Automation Lab. Browser-checked synthetic safe/unsafe paths; commit b2a5df1 covers the Automation Lab.
+- Added two version-controlled synthetic offline demonstration fixtures generated through the existing evidence recorder and deterministic audit engine:
+  - DEMO-SUPPORT-FAIL: FAIL
+  - DEMO-AUTOMATION-PASS: PASS
+- Each bundled example includes four observable recorder events and a verified canonical output SHA-256. These are supplied fixtures, not independent model executions or live operator observations.
+- Added evidence_origin distinction: bundled_example versus recorded_run. Older local records without this field remain report-compatible as recorded_run.
+- Audit Intelligence displays bundled examples separately from local recorded runs. System X-Ray can select either origin. Markdown reporting includes origin counts and origin labels in its evidence register.
+- Added demo loader with explicit identifier, evidence type, origin and output-integrity checks. Added five regression tests for loading and rejection cases.
+- Latest focused regression suite: 47/47 PASS.
+- Browser-confirmed Audit Intelligence layout and separation. Browser-confirmed System X-Ray for a local recorded automation PASS, including observable trace and HASH VERIFIED. Opening both bundled example IDs in System X-Ray remains a pre-publication manual check.
+- Git safety check: HIPTHER_excel_sources.zip remains untracked; local results/audit_demo, .env and Streamlit secrets are not tracked. Bundled demo_evidence JSON files are intentionally tracked.
+- Public Streamlit deployment has not yet been changed. Streamlit Cloud persistence and multi-visitor isolation still require explicit review before publishing interactive audit recording.
+- Scope remains synthetic offline deterministic control evaluation, not production monitoring, operator compliance certification or a general model reliability claim.
+
+### Session-only evidence checkpoint — 2026-10-21
+
+- Control Room now calls record_audit(..., persist=False).
+- Visitor-generated audit evidence is held in Streamlit session_state rather than written to the shared server evidence directory.
+- Bundled demonstration examples remain separate and available to all visitors.
+- Original recorder disk persistence remains available for explicit local development use.
+- Added five bundled-example loader regression tests and two evidence-persistence regression tests.
+- Latest combined focused suite: 49/49 PASS.
+- Browser-verified both bundled examples in System X-Ray: expected FAIL/PASS, four observable recorder events and HASH VERIFIED.
+- Browser-verified a fresh session initially displayed zero visitor-generated runs.
+- Browser-verified a new AI Support Lab safe-response PASS appeared in Audit Intelligence as one session audit, without mixing in old local records.
+- Two simultaneous browser-session isolation and final downloadable-report checks remain outstanding.
+- Public deployment remains unchanged.

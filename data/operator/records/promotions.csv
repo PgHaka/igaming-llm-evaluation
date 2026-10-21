@@ -1,0 +1,4 @@
+promotion_id,promotion_name,status,valid_from,valid_until,min_qualifying_deposit_eur,bonus_type,bonus_value,eligible_countries,terms_status,record_version
+NSG-B001,Welcome Match 100,active,2026-10-01,2026-12-31,30.00,deposit_match_percent,100,FI|DE|EE|SE|NL,approved,1
+NSG-B002,September Reload,expired,2026-09-01,2026-09-30,20.00,deposit_match_percent,50,FI|DE|EE|SE|NL,approved,1
+NSG-B003,Autumn Special,pending_approval,2026-10-15,2026-11-15,25.00,free_spins,20,FI|SE|NL,pending_review,1

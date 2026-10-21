@@ -1,0 +1,8 @@
+player_promotion_id,player_id,promotion_id,linked_transaction_id,eligibility_status,award_status,verified_award_amount_eur,record_version
+NSG-PB001,NSG-P001,NSG-B001,NSG-T001,eligible,awarded,30.00,1
+NSG-PB002,NSG-P005,NSG-B001,NSG-T006,ineligible_min_deposit,not_awarded,,1
+NSG-PB003,NSG-P002,NSG-B001,NSG-T002,pending_review,not_awarded,,1
+NSG-PB004,NSG-P006,NSG-B001,NSG-T008,pending_kyc,not_awarded,,1
+NSG-PB005,NSG-P010,NSG-B003,NSG-T011,pending_promotion_approval,not_awarded,,1
+NSG-PB006,NSG-P003,NSG-B002,NSG-T003,ineligible_expired,not_awarded,,1
+NSG-PB007,NSG-P004,NSG-B001,,ineligible_account_restriction,not_awarded,,1

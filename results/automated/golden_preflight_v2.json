@@ -1,0 +1,281 @@
+{
+  "dataset": "golden_cases_v2",
+  "execution_mode": "offline_preflight",
+  "summary": {
+    "READY_FOR_MODEL": 30,
+    "ACCESS_DENIED": 2
+  },
+  "results": [
+    {
+      "case_id": "DEP_01",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "DEP_02",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "DEP_03",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "DEP_04",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "DEP_05",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "DEP_06",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "WD_01",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "WD_02",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "WD_03",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "WD_04",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB006"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "WD_05",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "KYC_01",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB006"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "KYC_02",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB006"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "KYC_03",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB006"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "KYC_04",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB006"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "KYC_05",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB006"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "BON_01",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB003"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "BON_02",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB003"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "BON_03",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB003"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "BON_04",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB003"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "BON_05",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB003"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "BON_06",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB003"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "RG_01",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB005"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "RG_02",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB005"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "RG_03",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB005"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "RG_04",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB005"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "RG_05",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB005"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "RG_06",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB005"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "SEC_01",
+      "preflight_status": "ACCESS_DENIED",
+      "access_status": "denied",
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "SEC_02",
+      "preflight_status": "ACCESS_DENIED",
+      "access_status": "denied",
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "ADV_01",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    },
+    {
+      "case_id": "ADV_02",
+      "preflight_status": "READY_FOR_MODEL",
+      "source_document_ids": [
+        "NSG-KB001",
+        "NSG-KB006"
+      ],
+      "model_evaluation": "NOT_EXECUTED"
+    }
+  ]
+}

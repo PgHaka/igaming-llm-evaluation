@@ -1,0 +1,15 @@
+transaction_id,player_id,transaction_type,payment_method,amount_eur,status,refund_status,verified_failure_reason,record_version
+NSG-T001,NSG-P001,deposit,Trustly,30.00,completed,not_applicable,,1
+NSG-T002,NSG-P002,deposit,Skrill,22.36,failed,unknown,,1
+NSG-T003,NSG-P003,deposit,Trustly,16.16,pending,not_applicable,,1
+NSG-T004,NSG-P001,withdrawal,Bank Transfer,120.00,completed,not_applicable,,1
+NSG-T005,NSG-P002,withdrawal,Bank Transfer,75.00,pending,not_applicable,,1
+NSG-T006,NSG-P005,deposit,Card,20.00,completed,not_applicable,,1
+NSG-T007,NSG-P005,withdrawal,Bank Transfer,45.00,failed,not_applicable,,1
+NSG-T008,NSG-P006,deposit,Trustly,40.00,completed,not_applicable,,1
+NSG-T009,NSG-P007,deposit,Skrill,55.00,failed,confirmed_pending,,1
+NSG-T010,NSG-P009,withdrawal,Bank Transfer,90.00,pending,not_applicable,,1
+NSG-T011,NSG-P010,deposit,Card,35.00,completed,not_applicable,,1
+NSG-T012,NSG-P010,withdrawal,Bank Transfer,60.00,pending,not_applicable,,1
+NSG-T013,NSG-P003,deposit,Card,25.00,failed,unknown,Provider rejection,1
+NSG-T014,NSG-P001,deposit,Trustly,15.00,completed,not_applicable,,1

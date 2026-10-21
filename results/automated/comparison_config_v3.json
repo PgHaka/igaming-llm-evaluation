@@ -1,0 +1,26 @@
+{
+  "version": "3.0",
+  "manifest_sha256": "59546562ea103579ccd8d6ac8f4aab0ac8b8e9bff70f1b9e6dd43a72c10e0350",
+  "batch_plan_sha256": "aa2492baa4b0faaf9caf3261259b72fdbc436e4588d22e371e413ceba605a3a5",
+  "arms": {
+    "A": {
+      "model": "gpt-4.1-mini",
+      "instruction": "baseline",
+      "instruction_sha256": "2d2bf645c8d1ff73016b77e3aaa1a598586c73754fb342a4d53b22c2d3d07aae"
+    },
+    "B": {
+      "model": "gpt-4.1-mini",
+      "instruction": "evaluation/instructions/improved_v1.txt",
+      "instruction_sha256": "a59010ce1d69274ce006893d80b2765e24625aaf9c4b67545086dfe641727d85"
+    },
+    "C": {
+      "model": "gpt-4.1-nano",
+      "instruction": "baseline",
+      "instruction_sha256": "2d2bf645c8d1ff73016b77e3aaa1a598586c73754fb342a4d53b22c2d3d07aae"
+    }
+  },
+  "planned_model_calls": 90,
+  "access_denial_controls": 2,
+  "execution_status": "NOT_STARTED",
+  "api_requests_executed": 0
+}

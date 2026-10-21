@@ -1,0 +1,22 @@
+{
+  "checked_date_utc": "2026-10-21",
+  "currency": "USD",
+  "unit": "per_1_million_text_tokens",
+  "pricing_mode": "standard",
+  "cached_input_discount_assumed": false,
+  "provider_billing_guarantee": false,
+  "models": {
+    "gpt-4.1-mini": {
+      "input_per_million_usd": "0.40",
+      "output_per_million_usd": "1.60",
+      "source": "https://developers.openai.com/api/docs/models/gpt-4.1-mini",
+      "model_page_status": "Deprecated"
+    },
+    "gpt-4.1-nano": {
+      "input_per_million_usd": "0.10",
+      "output_per_million_usd": "0.40",
+      "source": "https://developers.openai.com/api/docs/models/gpt-4.1-nano",
+      "model_page_status": "Deprecated"
+    }
+  }
+}

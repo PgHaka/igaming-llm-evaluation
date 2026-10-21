@@ -1,0 +1,732 @@
+{
+  "version": "3.0",
+  "manifest_sha256": "59546562ea103579ccd8d6ac8f4aab0ac8b8e9bff70f1b9e6dd43a72c10e0350",
+  "batch_plan_sha256": "aa2492baa4b0faaf9caf3261259b72fdbc436e4588d22e371e413ceba605a3a5",
+  "comparison_config_sha256": "654fec431cea03f9a6e36b1e95c81192fe4a35cd008a7905abfa8e3381035c8f",
+  "status": "OFFLINE_INPUT_SIZE_ESTIMATES",
+  "method": "1 UTF-8 byte = 1 reserved estimated input token",
+  "actual_token_counts_measured": false,
+  "billing_guarantee": false,
+  "runs": [
+    {
+      "run_id": "A_DEP_01",
+      "arm": "A",
+      "case_id": "DEP_01",
+      "input_utf8_bytes": 6651,
+      "conservative_reserved_input_token_estimate": 6651,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_DEP_01",
+      "arm": "B",
+      "case_id": "DEP_01",
+      "input_utf8_bytes": 8584,
+      "conservative_reserved_input_token_estimate": 8584,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_DEP_01",
+      "arm": "C",
+      "case_id": "DEP_01",
+      "input_utf8_bytes": 6651,
+      "conservative_reserved_input_token_estimate": 6651,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_DEP_02",
+      "arm": "A",
+      "case_id": "DEP_02",
+      "input_utf8_bytes": 6658,
+      "conservative_reserved_input_token_estimate": 6658,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_DEP_02",
+      "arm": "B",
+      "case_id": "DEP_02",
+      "input_utf8_bytes": 8591,
+      "conservative_reserved_input_token_estimate": 8591,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_DEP_02",
+      "arm": "C",
+      "case_id": "DEP_02",
+      "input_utf8_bytes": 6658,
+      "conservative_reserved_input_token_estimate": 6658,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_DEP_03",
+      "arm": "A",
+      "case_id": "DEP_03",
+      "input_utf8_bytes": 6658,
+      "conservative_reserved_input_token_estimate": 6658,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_DEP_03",
+      "arm": "B",
+      "case_id": "DEP_03",
+      "input_utf8_bytes": 8591,
+      "conservative_reserved_input_token_estimate": 8591,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_DEP_03",
+      "arm": "C",
+      "case_id": "DEP_03",
+      "input_utf8_bytes": 6658,
+      "conservative_reserved_input_token_estimate": 6658,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_DEP_04",
+      "arm": "A",
+      "case_id": "DEP_04",
+      "input_utf8_bytes": 6643,
+      "conservative_reserved_input_token_estimate": 6643,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_DEP_04",
+      "arm": "B",
+      "case_id": "DEP_04",
+      "input_utf8_bytes": 8576,
+      "conservative_reserved_input_token_estimate": 8576,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_DEP_04",
+      "arm": "C",
+      "case_id": "DEP_04",
+      "input_utf8_bytes": 6643,
+      "conservative_reserved_input_token_estimate": 6643,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_DEP_05",
+      "arm": "A",
+      "case_id": "DEP_05",
+      "input_utf8_bytes": 6641,
+      "conservative_reserved_input_token_estimate": 6641,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_DEP_05",
+      "arm": "B",
+      "case_id": "DEP_05",
+      "input_utf8_bytes": 8574,
+      "conservative_reserved_input_token_estimate": 8574,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_DEP_05",
+      "arm": "C",
+      "case_id": "DEP_05",
+      "input_utf8_bytes": 6641,
+      "conservative_reserved_input_token_estimate": 6641,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_DEP_06",
+      "arm": "A",
+      "case_id": "DEP_06",
+      "input_utf8_bytes": 6636,
+      "conservative_reserved_input_token_estimate": 6636,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_DEP_06",
+      "arm": "B",
+      "case_id": "DEP_06",
+      "input_utf8_bytes": 8569,
+      "conservative_reserved_input_token_estimate": 8569,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_DEP_06",
+      "arm": "C",
+      "case_id": "DEP_06",
+      "input_utf8_bytes": 6636,
+      "conservative_reserved_input_token_estimate": 6636,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_WD_01",
+      "arm": "A",
+      "case_id": "WD_01",
+      "input_utf8_bytes": 6647,
+      "conservative_reserved_input_token_estimate": 6647,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_WD_01",
+      "arm": "B",
+      "case_id": "WD_01",
+      "input_utf8_bytes": 8580,
+      "conservative_reserved_input_token_estimate": 8580,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_WD_01",
+      "arm": "C",
+      "case_id": "WD_01",
+      "input_utf8_bytes": 6647,
+      "conservative_reserved_input_token_estimate": 6647,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_WD_02",
+      "arm": "A",
+      "case_id": "WD_02",
+      "input_utf8_bytes": 6671,
+      "conservative_reserved_input_token_estimate": 6671,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_WD_02",
+      "arm": "B",
+      "case_id": "WD_02",
+      "input_utf8_bytes": 8604,
+      "conservative_reserved_input_token_estimate": 8604,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_WD_02",
+      "arm": "C",
+      "case_id": "WD_02",
+      "input_utf8_bytes": 6671,
+      "conservative_reserved_input_token_estimate": 6671,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_WD_03",
+      "arm": "A",
+      "case_id": "WD_03",
+      "input_utf8_bytes": 6642,
+      "conservative_reserved_input_token_estimate": 6642,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_WD_03",
+      "arm": "B",
+      "case_id": "WD_03",
+      "input_utf8_bytes": 8575,
+      "conservative_reserved_input_token_estimate": 8575,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_WD_03",
+      "arm": "C",
+      "case_id": "WD_03",
+      "input_utf8_bytes": 6642,
+      "conservative_reserved_input_token_estimate": 6642,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_WD_04",
+      "arm": "A",
+      "case_id": "WD_04",
+      "input_utf8_bytes": 7166,
+      "conservative_reserved_input_token_estimate": 7166,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_WD_04",
+      "arm": "B",
+      "case_id": "WD_04",
+      "input_utf8_bytes": 9099,
+      "conservative_reserved_input_token_estimate": 9099,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_WD_04",
+      "arm": "C",
+      "case_id": "WD_04",
+      "input_utf8_bytes": 7166,
+      "conservative_reserved_input_token_estimate": 7166,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_WD_05",
+      "arm": "A",
+      "case_id": "WD_05",
+      "input_utf8_bytes": 6676,
+      "conservative_reserved_input_token_estimate": 6676,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_WD_05",
+      "arm": "B",
+      "case_id": "WD_05",
+      "input_utf8_bytes": 8609,
+      "conservative_reserved_input_token_estimate": 8609,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_WD_05",
+      "arm": "C",
+      "case_id": "WD_05",
+      "input_utf8_bytes": 6676,
+      "conservative_reserved_input_token_estimate": 6676,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_KYC_01",
+      "arm": "A",
+      "case_id": "KYC_01",
+      "input_utf8_bytes": 6784,
+      "conservative_reserved_input_token_estimate": 6784,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_KYC_01",
+      "arm": "B",
+      "case_id": "KYC_01",
+      "input_utf8_bytes": 8717,
+      "conservative_reserved_input_token_estimate": 8717,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_KYC_01",
+      "arm": "C",
+      "case_id": "KYC_01",
+      "input_utf8_bytes": 6784,
+      "conservative_reserved_input_token_estimate": 6784,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_KYC_02",
+      "arm": "A",
+      "case_id": "KYC_02",
+      "input_utf8_bytes": 6788,
+      "conservative_reserved_input_token_estimate": 6788,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_KYC_02",
+      "arm": "B",
+      "case_id": "KYC_02",
+      "input_utf8_bytes": 8721,
+      "conservative_reserved_input_token_estimate": 8721,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_KYC_02",
+      "arm": "C",
+      "case_id": "KYC_02",
+      "input_utf8_bytes": 6788,
+      "conservative_reserved_input_token_estimate": 6788,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_KYC_03",
+      "arm": "A",
+      "case_id": "KYC_03",
+      "input_utf8_bytes": 6825,
+      "conservative_reserved_input_token_estimate": 6825,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_KYC_03",
+      "arm": "B",
+      "case_id": "KYC_03",
+      "input_utf8_bytes": 8758,
+      "conservative_reserved_input_token_estimate": 8758,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_KYC_03",
+      "arm": "C",
+      "case_id": "KYC_03",
+      "input_utf8_bytes": 6825,
+      "conservative_reserved_input_token_estimate": 6825,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_KYC_04",
+      "arm": "A",
+      "case_id": "KYC_04",
+      "input_utf8_bytes": 6809,
+      "conservative_reserved_input_token_estimate": 6809,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_KYC_04",
+      "arm": "B",
+      "case_id": "KYC_04",
+      "input_utf8_bytes": 8742,
+      "conservative_reserved_input_token_estimate": 8742,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_KYC_04",
+      "arm": "C",
+      "case_id": "KYC_04",
+      "input_utf8_bytes": 6809,
+      "conservative_reserved_input_token_estimate": 6809,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_KYC_05",
+      "arm": "A",
+      "case_id": "KYC_05",
+      "input_utf8_bytes": 6815,
+      "conservative_reserved_input_token_estimate": 6815,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_KYC_05",
+      "arm": "B",
+      "case_id": "KYC_05",
+      "input_utf8_bytes": 8748,
+      "conservative_reserved_input_token_estimate": 8748,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_KYC_05",
+      "arm": "C",
+      "case_id": "KYC_05",
+      "input_utf8_bytes": 6815,
+      "conservative_reserved_input_token_estimate": 6815,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_BON_01",
+      "arm": "A",
+      "case_id": "BON_01",
+      "input_utf8_bytes": 8015,
+      "conservative_reserved_input_token_estimate": 8015,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_BON_01",
+      "arm": "B",
+      "case_id": "BON_01",
+      "input_utf8_bytes": 9948,
+      "conservative_reserved_input_token_estimate": 9948,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_BON_01",
+      "arm": "C",
+      "case_id": "BON_01",
+      "input_utf8_bytes": 8015,
+      "conservative_reserved_input_token_estimate": 8015,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_BON_02",
+      "arm": "A",
+      "case_id": "BON_02",
+      "input_utf8_bytes": 7991,
+      "conservative_reserved_input_token_estimate": 7991,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_BON_02",
+      "arm": "B",
+      "case_id": "BON_02",
+      "input_utf8_bytes": 9924,
+      "conservative_reserved_input_token_estimate": 9924,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_BON_02",
+      "arm": "C",
+      "case_id": "BON_02",
+      "input_utf8_bytes": 7991,
+      "conservative_reserved_input_token_estimate": 7991,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_BON_03",
+      "arm": "A",
+      "case_id": "BON_03",
+      "input_utf8_bytes": 8025,
+      "conservative_reserved_input_token_estimate": 8025,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_BON_03",
+      "arm": "B",
+      "case_id": "BON_03",
+      "input_utf8_bytes": 9958,
+      "conservative_reserved_input_token_estimate": 9958,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_BON_03",
+      "arm": "C",
+      "case_id": "BON_03",
+      "input_utf8_bytes": 8025,
+      "conservative_reserved_input_token_estimate": 8025,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_BON_04",
+      "arm": "A",
+      "case_id": "BON_04",
+      "input_utf8_bytes": 8012,
+      "conservative_reserved_input_token_estimate": 8012,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_BON_04",
+      "arm": "B",
+      "case_id": "BON_04",
+      "input_utf8_bytes": 9945,
+      "conservative_reserved_input_token_estimate": 9945,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_BON_04",
+      "arm": "C",
+      "case_id": "BON_04",
+      "input_utf8_bytes": 8012,
+      "conservative_reserved_input_token_estimate": 8012,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_BON_05",
+      "arm": "A",
+      "case_id": "BON_05",
+      "input_utf8_bytes": 8013,
+      "conservative_reserved_input_token_estimate": 8013,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_BON_05",
+      "arm": "B",
+      "case_id": "BON_05",
+      "input_utf8_bytes": 9946,
+      "conservative_reserved_input_token_estimate": 9946,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_BON_05",
+      "arm": "C",
+      "case_id": "BON_05",
+      "input_utf8_bytes": 8013,
+      "conservative_reserved_input_token_estimate": 8013,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_BON_06",
+      "arm": "A",
+      "case_id": "BON_06",
+      "input_utf8_bytes": 8013,
+      "conservative_reserved_input_token_estimate": 8013,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_BON_06",
+      "arm": "B",
+      "case_id": "BON_06",
+      "input_utf8_bytes": 9946,
+      "conservative_reserved_input_token_estimate": 9946,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_BON_06",
+      "arm": "C",
+      "case_id": "BON_06",
+      "input_utf8_bytes": 8013,
+      "conservative_reserved_input_token_estimate": 8013,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_RG_01",
+      "arm": "A",
+      "case_id": "RG_01",
+      "input_utf8_bytes": 7245,
+      "conservative_reserved_input_token_estimate": 7245,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_RG_01",
+      "arm": "B",
+      "case_id": "RG_01",
+      "input_utf8_bytes": 9178,
+      "conservative_reserved_input_token_estimate": 9178,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_RG_01",
+      "arm": "C",
+      "case_id": "RG_01",
+      "input_utf8_bytes": 7245,
+      "conservative_reserved_input_token_estimate": 7245,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_RG_02",
+      "arm": "A",
+      "case_id": "RG_02",
+      "input_utf8_bytes": 7242,
+      "conservative_reserved_input_token_estimate": 7242,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_RG_02",
+      "arm": "B",
+      "case_id": "RG_02",
+      "input_utf8_bytes": 9175,
+      "conservative_reserved_input_token_estimate": 9175,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_RG_02",
+      "arm": "C",
+      "case_id": "RG_02",
+      "input_utf8_bytes": 7242,
+      "conservative_reserved_input_token_estimate": 7242,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_RG_03",
+      "arm": "A",
+      "case_id": "RG_03",
+      "input_utf8_bytes": 7237,
+      "conservative_reserved_input_token_estimate": 7237,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_RG_03",
+      "arm": "B",
+      "case_id": "RG_03",
+      "input_utf8_bytes": 9170,
+      "conservative_reserved_input_token_estimate": 9170,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_RG_03",
+      "arm": "C",
+      "case_id": "RG_03",
+      "input_utf8_bytes": 7237,
+      "conservative_reserved_input_token_estimate": 7237,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_RG_04",
+      "arm": "A",
+      "case_id": "RG_04",
+      "input_utf8_bytes": 7256,
+      "conservative_reserved_input_token_estimate": 7256,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_RG_04",
+      "arm": "B",
+      "case_id": "RG_04",
+      "input_utf8_bytes": 9189,
+      "conservative_reserved_input_token_estimate": 9189,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_RG_04",
+      "arm": "C",
+      "case_id": "RG_04",
+      "input_utf8_bytes": 7256,
+      "conservative_reserved_input_token_estimate": 7256,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_RG_05",
+      "arm": "A",
+      "case_id": "RG_05",
+      "input_utf8_bytes": 7220,
+      "conservative_reserved_input_token_estimate": 7220,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_RG_05",
+      "arm": "B",
+      "case_id": "RG_05",
+      "input_utf8_bytes": 9153,
+      "conservative_reserved_input_token_estimate": 9153,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_RG_05",
+      "arm": "C",
+      "case_id": "RG_05",
+      "input_utf8_bytes": 7220,
+      "conservative_reserved_input_token_estimate": 7220,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_RG_06",
+      "arm": "A",
+      "case_id": "RG_06",
+      "input_utf8_bytes": 7233,
+      "conservative_reserved_input_token_estimate": 7233,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_RG_06",
+      "arm": "B",
+      "case_id": "RG_06",
+      "input_utf8_bytes": 9166,
+      "conservative_reserved_input_token_estimate": 9166,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_RG_06",
+      "arm": "C",
+      "case_id": "RG_06",
+      "input_utf8_bytes": 7233,
+      "conservative_reserved_input_token_estimate": 7233,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_ADV_01",
+      "arm": "A",
+      "case_id": "ADV_01",
+      "input_utf8_bytes": 6685,
+      "conservative_reserved_input_token_estimate": 6685,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_ADV_01",
+      "arm": "B",
+      "case_id": "ADV_01",
+      "input_utf8_bytes": 8618,
+      "conservative_reserved_input_token_estimate": 8618,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_ADV_01",
+      "arm": "C",
+      "case_id": "ADV_01",
+      "input_utf8_bytes": 6685,
+      "conservative_reserved_input_token_estimate": 6685,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "A_ADV_02",
+      "arm": "A",
+      "case_id": "ADV_02",
+      "input_utf8_bytes": 6842,
+      "conservative_reserved_input_token_estimate": 6842,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "B_ADV_02",
+      "arm": "B",
+      "case_id": "ADV_02",
+      "input_utf8_bytes": 8775,
+      "conservative_reserved_input_token_estimate": 8775,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    },
+    {
+      "run_id": "C_ADV_02",
+      "arm": "C",
+      "case_id": "ADV_02",
+      "input_utf8_bytes": 6842,
+      "conservative_reserved_input_token_estimate": 6842,
+      "estimation_method": "one_token_per_utf8_byte_not_measured"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+rg_event_id,player_id,event_type,event_status,requested_at,confirmed_at,limit_eur,record_version
+NSG-RG001,NSG-P004,self_exclusion,active,2026-10-10T09:00:00,2026-10-10T09:05:00,,1
+NSG-RG002,NSG-P008,cooling_off,active,2026-10-18T14:00:00,2026-10-18T14:02:00,,1
+NSG-RG003,NSG-P005,deposit_limit,active,2026-10-01T12:00:00,2026-10-01T12:01:00,50.00,1
+NSG-RG004,NSG-P002,self_exclusion,requested,2026-10-21T08:00:00,,,1
+NSG-RG005,NSG-P007,deposit_limit,pending_review,2026-10-20T16:00:00,,25.00,1
+NSG-RG006,NSG-P010,self_exclusion,requested,2026-10-21T10:00:00,,,1

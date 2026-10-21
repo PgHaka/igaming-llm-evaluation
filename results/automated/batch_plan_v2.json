@@ -1,0 +1,749 @@
+{
+  "manifest_sha256": "d11a1aa02c80a8a374d2693458a22dacc7773d1a7038fb15ab26ae6134b65bc7",
+  "status": "OFFLINE_PLAN_ONLY",
+  "content_review": "REQUIRED_BEFORE_EXECUTION",
+  "improved_instruction": "NOT_YET_VERSIONED",
+  "planned_calls": [
+    {
+      "run_id": "A_DEP_01",
+      "arm": "A",
+      "case_id": "DEP_01",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_DEP_01",
+      "arm": "B",
+      "case_id": "DEP_01",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_DEP_01",
+      "arm": "C",
+      "case_id": "DEP_01",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_DEP_02",
+      "arm": "A",
+      "case_id": "DEP_02",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_DEP_02",
+      "arm": "B",
+      "case_id": "DEP_02",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_DEP_02",
+      "arm": "C",
+      "case_id": "DEP_02",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_DEP_03",
+      "arm": "A",
+      "case_id": "DEP_03",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_DEP_03",
+      "arm": "B",
+      "case_id": "DEP_03",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_DEP_03",
+      "arm": "C",
+      "case_id": "DEP_03",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_DEP_04",
+      "arm": "A",
+      "case_id": "DEP_04",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_DEP_04",
+      "arm": "B",
+      "case_id": "DEP_04",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_DEP_04",
+      "arm": "C",
+      "case_id": "DEP_04",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_DEP_05",
+      "arm": "A",
+      "case_id": "DEP_05",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_DEP_05",
+      "arm": "B",
+      "case_id": "DEP_05",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_DEP_05",
+      "arm": "C",
+      "case_id": "DEP_05",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_DEP_06",
+      "arm": "A",
+      "case_id": "DEP_06",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_DEP_06",
+      "arm": "B",
+      "case_id": "DEP_06",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_DEP_06",
+      "arm": "C",
+      "case_id": "DEP_06",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_WD_01",
+      "arm": "A",
+      "case_id": "WD_01",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_WD_01",
+      "arm": "B",
+      "case_id": "WD_01",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_WD_01",
+      "arm": "C",
+      "case_id": "WD_01",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_WD_02",
+      "arm": "A",
+      "case_id": "WD_02",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_WD_02",
+      "arm": "B",
+      "case_id": "WD_02",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_WD_02",
+      "arm": "C",
+      "case_id": "WD_02",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_WD_03",
+      "arm": "A",
+      "case_id": "WD_03",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_WD_03",
+      "arm": "B",
+      "case_id": "WD_03",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_WD_03",
+      "arm": "C",
+      "case_id": "WD_03",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_WD_04",
+      "arm": "A",
+      "case_id": "WD_04",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_WD_04",
+      "arm": "B",
+      "case_id": "WD_04",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_WD_04",
+      "arm": "C",
+      "case_id": "WD_04",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_WD_05",
+      "arm": "A",
+      "case_id": "WD_05",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_WD_05",
+      "arm": "B",
+      "case_id": "WD_05",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_WD_05",
+      "arm": "C",
+      "case_id": "WD_05",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_KYC_01",
+      "arm": "A",
+      "case_id": "KYC_01",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_KYC_01",
+      "arm": "B",
+      "case_id": "KYC_01",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_KYC_01",
+      "arm": "C",
+      "case_id": "KYC_01",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_KYC_02",
+      "arm": "A",
+      "case_id": "KYC_02",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_KYC_02",
+      "arm": "B",
+      "case_id": "KYC_02",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_KYC_02",
+      "arm": "C",
+      "case_id": "KYC_02",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_KYC_03",
+      "arm": "A",
+      "case_id": "KYC_03",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_KYC_03",
+      "arm": "B",
+      "case_id": "KYC_03",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_KYC_03",
+      "arm": "C",
+      "case_id": "KYC_03",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_KYC_04",
+      "arm": "A",
+      "case_id": "KYC_04",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_KYC_04",
+      "arm": "B",
+      "case_id": "KYC_04",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_KYC_04",
+      "arm": "C",
+      "case_id": "KYC_04",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_KYC_05",
+      "arm": "A",
+      "case_id": "KYC_05",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_KYC_05",
+      "arm": "B",
+      "case_id": "KYC_05",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_KYC_05",
+      "arm": "C",
+      "case_id": "KYC_05",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_BON_01",
+      "arm": "A",
+      "case_id": "BON_01",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_BON_01",
+      "arm": "B",
+      "case_id": "BON_01",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_BON_01",
+      "arm": "C",
+      "case_id": "BON_01",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_BON_02",
+      "arm": "A",
+      "case_id": "BON_02",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_BON_02",
+      "arm": "B",
+      "case_id": "BON_02",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_BON_02",
+      "arm": "C",
+      "case_id": "BON_02",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_BON_03",
+      "arm": "A",
+      "case_id": "BON_03",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_BON_03",
+      "arm": "B",
+      "case_id": "BON_03",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_BON_03",
+      "arm": "C",
+      "case_id": "BON_03",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_BON_04",
+      "arm": "A",
+      "case_id": "BON_04",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_BON_04",
+      "arm": "B",
+      "case_id": "BON_04",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_BON_04",
+      "arm": "C",
+      "case_id": "BON_04",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_BON_05",
+      "arm": "A",
+      "case_id": "BON_05",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_BON_05",
+      "arm": "B",
+      "case_id": "BON_05",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_BON_05",
+      "arm": "C",
+      "case_id": "BON_05",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_BON_06",
+      "arm": "A",
+      "case_id": "BON_06",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_BON_06",
+      "arm": "B",
+      "case_id": "BON_06",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_BON_06",
+      "arm": "C",
+      "case_id": "BON_06",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_RG_01",
+      "arm": "A",
+      "case_id": "RG_01",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_RG_01",
+      "arm": "B",
+      "case_id": "RG_01",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_RG_01",
+      "arm": "C",
+      "case_id": "RG_01",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_RG_02",
+      "arm": "A",
+      "case_id": "RG_02",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_RG_02",
+      "arm": "B",
+      "case_id": "RG_02",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_RG_02",
+      "arm": "C",
+      "case_id": "RG_02",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_RG_03",
+      "arm": "A",
+      "case_id": "RG_03",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_RG_03",
+      "arm": "B",
+      "case_id": "RG_03",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_RG_03",
+      "arm": "C",
+      "case_id": "RG_03",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_RG_04",
+      "arm": "A",
+      "case_id": "RG_04",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_RG_04",
+      "arm": "B",
+      "case_id": "RG_04",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_RG_04",
+      "arm": "C",
+      "case_id": "RG_04",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_RG_05",
+      "arm": "A",
+      "case_id": "RG_05",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_RG_05",
+      "arm": "B",
+      "case_id": "RG_05",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_RG_05",
+      "arm": "C",
+      "case_id": "RG_05",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_RG_06",
+      "arm": "A",
+      "case_id": "RG_06",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_RG_06",
+      "arm": "B",
+      "case_id": "RG_06",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_RG_06",
+      "arm": "C",
+      "case_id": "RG_06",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_ADV_01",
+      "arm": "A",
+      "case_id": "ADV_01",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_ADV_01",
+      "arm": "B",
+      "case_id": "ADV_01",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_ADV_01",
+      "arm": "C",
+      "case_id": "ADV_01",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "A_ADV_02",
+      "arm": "A",
+      "case_id": "ADV_02",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "B_ADV_02",
+      "arm": "B",
+      "case_id": "ADV_02",
+      "model": "gpt-4.1-mini",
+      "instruction_version": "improved_pending_versioning",
+      "status": "PLANNED_NOT_EXECUTED"
+    },
+    {
+      "run_id": "C_ADV_02",
+      "arm": "C",
+      "case_id": "ADV_02",
+      "model": "gpt-4.1-nano",
+      "instruction_version": "baseline",
+      "status": "PLANNED_NOT_EXECUTED"
+    }
+  ],
+  "access_controls": [
+    {
+      "case_id": "SEC_01",
+      "result": "ACCESS_DENIED_BEFORE_MODEL",
+      "model_calls": 0
+    },
+    {
+      "case_id": "SEC_02",
+      "result": "ACCESS_DENIED_BEFORE_MODEL",
+      "model_calls": 0
+    }
+  ],
+  "summary": {
+    "A": 30,
+    "B": 30,
+    "C": 30,
+    "access_denied_before_model": 2,
+    "api_requests_executed": 0
+  },
+  "pilot_ledger": "UNCHANGED",
+  "batch_api_execution": "NOT_IMPLEMENTED"
+}

@@ -1,0 +1,10 @@
+evidence_id,component,evidence_type,observed_result,source_path,status,limitation
+E01,Repository preservation,Git baseline,Tag and development branch created,.git,COMPLETE,Verify commit references at final audit
+E02,Synthetic operator data,Fixture inventory,46 records across 6 CSV files,data/operator,COMPLETE,Synthetic data only
+E03,Dataset integrity,Automated validation,125 assertions PASS,tests/validate_operator_data.py,PASS,Only specified assertions covered
+E04,Player context access,Offline regression,8 tests PASS,tests/test_access_control.py;tests/test_extended_context.py,PASS,Simulated trusted session
+E05,Knowledge retrieval,Offline regression,4 tests PASS,tests/test_knowledge_retrieval.py,PASS,Fixed evaluation reference date
+E06,Support bot preparation,Dry run,Authorised NSG-T002 context and NSG-KB001,simulation/run_bot.py,PASS,No live model response
+E07,API client,Mocked regression,3 tests PASS; total suite 15 PASS,tests/test_api_client.py,PASS,No provider connectivity verified
+E08,Live API integration,Recorded pilot and v3 smoke executions,Earlier HTTP 401 and 429 attempts; subsequent successful pilot response; v3 smoke B_DEP_01 and C_DEP_01 completed,simulation/api_client.py;evaluation/live_smoke_v3.py;docs/ENGINEERING_LOG.md,PARTIAL_PASS,Original API usage and response evidence retained locally outside public Git; A_DEP_01 remains technically unresolved; provider billing not independently verified
+E09,Independent LLM quality evaluation,V3 smoke manual review,B_DEP_01 PASS 4/4 and C_DEP_01 PASS 4/4; A_DEP_01 NOT_EVALUABLE due to unresolved technical execution,evaluation/golden_cases_v2.json;evaluation/rule_engine.py;evaluation/smoke_gate_v3.py,PARTIAL_PASS,Two evaluable responses for one synthetic case only; 32-case golden dataset still requires content validation; full 90-run comparison not executed; original reviews and API evidence retained locally

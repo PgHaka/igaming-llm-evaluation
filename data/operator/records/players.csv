@@ -1,0 +1,11 @@
+player_id,country,account_status,kyc_status,kyc_document,kyc_rejection_reason,self_exclusion_status,deposit_limit_eur,bonus_eligibility,record_version
+NSG-P001,FI,active,verified,Passport,,none,200,eligible,1
+NSG-P002,DE,active,pending,National ID,,none,100,pending_review,1
+NSG-P003,EE,active,rejected,Passport,,none,150,not_verified,1
+NSG-P004,SE,restricted,verified,National ID,,active,0,ineligible,1
+NSG-P005,NL,active,verified,Driving Licence,,none,50,eligible,1
+NSG-P006,FI,active,pending,Utility Bill,,none,100,pending_review,1
+NSG-P007,DE,active,verified,Passport,,none,,unknown,1
+NSG-P008,CA,restricted,verified,Passport,,cooling_off,0,ineligible,1
+NSG-P009,EE,active,rejected,Passport,Document expired,none,100,not_verified,1
+NSG-P010,SE,active,verified,National ID,,none,250,eligible,1

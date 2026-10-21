@@ -320,3 +320,15 @@ Limitations:
 - A matching hash establishes consistency with the stored digest only.
 - It does not independently authenticate the upstream output source.
 - No live model execution or production monitoring was added.
+
+## 2026-10-21 — HIPTHER demo presentation
+
+Implemented:
+- Command Center introduction with a clear operator-facing value proposition.
+- Four-stage demonstration path: TEST, DETECT, INSPECT, REPORT.
+- Explicit synthetic/offline scope displayed on the landing page.
+- README updated to reflect 40 passing tests, integrity verification
+  and the downloadable audit report.
+- Original historical evaluation documentation preserved.
+
+No evaluation results or audit-engine rules were changed.

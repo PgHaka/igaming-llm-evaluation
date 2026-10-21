@@ -305,12 +305,53 @@ st.divider()
 
 if page == "Command Center":
     st.markdown("## Command Center")
+    st.markdown(
+        "### Independent quality control for operator AI systems"
+    )
     st.write(
-        "Two complementary evaluation workflows. Historical "
-        "human-reviewed model responses and new synthetic deterministic "
-        "audit controls are reported separately."
+        "Evaluate whether AI-generated customer responses and structured "
+        "automation decisions respect defined operational constraints. "
+        "Inspect detected violations, retain local evidence and export "
+        "a transparent audit summary."
+    )
+    st.caption(
+        "SYNTHETIC PROOF OF CONCEPT · OFFLINE DETERMINISTIC CONTROLS · "
+        "NO LIVE OPERATOR INTEGRATION"
     )
 
+    st.markdown("### Explore the audit workflow")
+    a, b, c, d = st.columns(4)
+
+    with a:
+        with st.container(border=True):
+            st.markdown("**01 / TEST**")
+            st.write("Submit a supplied support answer or automation decision.")
+            st.caption("AI SUPPORT LAB · AUTOMATION LAB")
+
+    with b:
+        with st.container(border=True):
+            st.markdown("**02 / DETECT**")
+            st.write("Check the output against implemented deterministic rules.")
+            st.caption("PASS · FAIL · REVIEW")
+
+    with c:
+        with st.container(border=True):
+            st.markdown("**03 / INSPECT**")
+            st.write("Review findings, observable events and output integrity.")
+            st.caption("SYSTEM X-RAY")
+
+    with d:
+        with st.container(border=True):
+            st.markdown("**04 / REPORT**")
+            st.write("Summarise recorded evidence in a downloadable audit report.")
+            st.caption("AUDIT INTELLIGENCE")
+
+    st.info(
+        "Demo starting point: open AI Support Lab and compare the supplied "
+        "safe response with the fabricated refund-confirmation example."
+    )
+
+    st.divider()
     st.markdown("### Historical LLM Evaluation")
     try:
         historical_runs, _, _, _ = load_data()

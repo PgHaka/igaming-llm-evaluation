@@ -1,35 +1,46 @@
 # Operator AI Audit — Control Room
 
-Independent iGaming AI Quality Assurance | Synthetic Proof of Concept
+**Independent iGaming AI Quality Assurance | Synthetic Proof of Concept**
+
+A modular offline demonstration connecting deterministic AI evaluation,
+recorded findings, evidence inspection and downloadable audit reporting.
 
 ## Run the application
 
-    pip install -r requirements.txt
+Install dependencies from requirements.txt, then run:
+
     streamlit run control_room.py
+
+## Demonstration workflow
+
+1. TEST — Submit a supplied support response or automation decision.
+2. DETECT — Evaluate the output against implemented DEP_02 controls.
+3. INSPECT — Review findings, event trace and integrity in System X-Ray.
+4. REPORT — Export a Markdown summary from Audit Intelligence.
 
 ## Workspaces
 
-- Command Center: separate historical and synthetic audit summaries.
-- LLM Evaluation Lab: original human-reviewed model evaluations.
-- AI Support Lab: synthetic DEP_02 customer-response controls.
-- Automation Lab: synthetic DEP_02 structured payment-decision controls.
-- System X-Ray: saved outputs, findings, hashes and recorder events.
-- Audit Intelligence: historical evaluation overview.
-- Methodology: evaluation approach and limitations.
+- Command Center: Demo introduction and separate evaluation summaries.
+- LLM Evaluation Lab: Original human-reviewed model evaluations.
+- AI Support Lab: Synthetic DEP_02 customer-response controls.
+- Automation Lab: Synthetic DEP_02 payment-decision controls.
+- System X-Ray: Evidence, findings, trace and SHA-256 verification.
+- Audit Intelligence: Synthetic analytics and downloadable audit report.
+- Methodology: Evaluation approach and limitations.
 
-## Evidence and scope
+## Verified project scope
 
-Historical evaluation: 12 recorded runs, 6 scenarios and 6 A/B pairs.
-Deterministic regression suite: 30 passing tests at checkpoint ff4c184.
+- Historical evaluation: 12 recorded runs, 6 scenarios, 6 A/B pairs.
+- Combined regression suite: 40 passing tests.
+- Nine existing local audit records passed output-integrity verification.
+- Historical evaluations and synthetic control results remain separate.
+- PASS, FAIL and REVIEW describe implemented control outcomes only.
 
-PASS means a defined control was satisfied; FAIL means a defined
-violation was detected; REVIEW means automated assessment was inconclusive.
+No live model execution, production operator integration or real payment
+actions are performed by this Control Room. SHA-256 checks local output
+consistency, not independent source provenance.
 
-Historical model results and synthetic control results must remain separate.
-Live model execution is disabled in this Control Room. No production
-integration, real payment execution or general reliability claim is made.
-
-This is an independent portfolio project using synthetic demo information.
+Independent portfolio project using synthetic demonstration information.
 
 ---
 

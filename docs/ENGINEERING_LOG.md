@@ -414,3 +414,15 @@ Purpose:
 - Regression suite: 63/63 PASS.
 - Limitations: synthetic offline assessment; no live operator connection, live model execution, general semantic correctness guarantee or production reliability certification.
 - `HIPTHER_excel_sources.zip` remains untracked and excluded from commits.
+
+## 2026-10-22 — Automation Lab V2: evidence-based audit presentation
+
+- Reworked the Payment Automation Simulation to display the supplied structured decision before evaluation, with editable JSON in a collapsed section.
+- Added evaluation-state labels that distinguish an unevaluated decision from a matching recorded audit.
+- Introduced `automation_audit_summary()` as a presentation-only formatter for recorded payment automation evidence. It does not re-evaluate outputs or change evaluator classifications.
+- Replaced the generic Automation Lab result panel with a layered presentation: audit outcome, recorded decision versus verified synthetic transaction facts, and expandable technical reference.
+- Preserved the existing deterministic DEP_02 automation contract, evidence recorder, observable trace, SHA-256 integrity check and Technical Inspector.
+- Verified FAIL (unsupported refund decision), PASS (defined safe decision) and REVIEW (conflicting optional metadata) in the local Streamlit interface.
+- Regression suite: 69 tests passed. Python compilation and `git diff --check` passed.
+- Scope: offline synthetic simulation using supplied JSON. No live payment provider, operator account, external automation or production execution is connected. PASS establishes only satisfaction of the implemented narrow control.
+- Implementation commit: `a7dc9b6` (`Add evidence-based Automation Lab V2 audit presentation`).

@@ -663,6 +663,11 @@ elif page == "Audit Intelligence":
     for column, example in zip(example_columns, bundled_examples):
         outcome = example["evaluation"]["result"]
         integrity_ok = verify_output_integrity(example)
+        summary = (
+            support_audit_summary(example)
+            if example["system_type"] == "support_bot"
+            else automation_audit_summary(example)
+        )
         system_label = {
             "support_bot": "AI SUPPORT BOT",
             "payment_automation": "PAYMENT AUTOMATION",
@@ -677,8 +682,11 @@ elif page == "Audit Intelligence":
                     st.success("PASS — DEFINED CONTROL SATISFIED")
                 else:
                     st.warning("REVIEW — MANUAL ASSESSMENT REQUIRED")
-                st.markdown(f"**{example['run_id']}**")
-                st.caption("PRE-SUPPLIED SYNTHETIC CONTROL FIXTURE")
+                st.markdown(f"#### {summary['title']}")
+                st.write(summary["reason"])
+                st.caption(
+                    f"{example['run_id']} · PRE-SUPPLIED SYNTHETIC CONTROL FIXTURE"
+                )
                 st.divider()
                 st.caption("EVIDENCE INTEGRITY / NOT AN AUDIT OUTCOME")
                 if integrity_ok:
@@ -802,15 +810,22 @@ elif page == "Audit Intelligence":
 
     with st.container(border=True):
         st.caption("AUDIT EVIDENCE / PORTABLE MARKDOWN REPORT")
-        st.markdown("#### Your evidence summary")
+        st.markdown("#### Generate evidence report")
         st.write(
-            "Export the two bundled synthetic examples and the audit "
-            "records generated during your current visitor session."
+            "Download a structured record of the bundled synthetic examples "
+            "and any audit runs generated during this visitor session. "
+            "The report identifies evidence origins, control outcomes, "
+            "finding categories, run IDs and output SHA-256 hashes."
         )
 
         left, right = st.columns(2)
         left.metric("BUNDLED EXAMPLES", len(bundled_examples))
         right.metric("SESSION RUNS", len(records))
+
+        st.caption(
+            "SYNTHETIC OFFLINE EVIDENCE SUMMARY · "
+            "NOT A PRODUCTION RELIABILITY OR COMPLIANCE CERTIFICATION"
+        )
 
         report_content = generate_audit_report(bundled_examples + records)
 

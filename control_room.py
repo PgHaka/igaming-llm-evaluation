@@ -279,10 +279,25 @@ def result_panel(evidence):
         f"Evaluator: {evaluation['evaluator_version']}"
     )
 
-    st.markdown("#### Evaluation findings")
-    for finding in evaluation["findings"]:
-        st.markdown(f"**{finding['rule_id']}**")
-        st.write(finding["reason"])
+    st.markdown("#### Audit finding")
+
+    if evidence["system_type"] == "support_bot":
+        summary = support_audit_summary(evidence)
+    elif evidence["system_type"] == "payment_automation":
+        summary = automation_audit_summary(evidence)
+    else:
+        summary = None
+
+    if summary is not None:
+        st.markdown(f"### {summary['title']}")
+        st.write(summary["reason"])
+
+    with st.expander("Original evaluator findings", expanded=False):
+        for finding in evaluation["findings"]:
+            st.markdown(f"**{finding['rule_id']}**")
+            st.write(finding["reason"])
+        if not evaluation["findings"]:
+            st.caption("No evaluator findings were recorded.")
 
     if evaluation["checks"]:
         st.markdown("#### Deterministic checks")
@@ -310,17 +325,25 @@ def show_evidence(record):
     else:
         st.code(record["output"], language="text")
 
-    st.markdown("#### Observable event trace")
-    for event in record["observable_trace"]:
-        with st.expander(
-            f"{event['step']:02d}  /  {event['event']}",
-            expanded=True,
-        ):
-            detail = event["detail"]
-            if isinstance(detail, dict):
-                st.json(detail)
-            else:
-                st.write(detail)
+    trace = record["observable_trace"]
+    with st.expander(
+        f"Technical Inspector / {len(trace)} recorded events",
+        expanded=False,
+    ):
+        st.caption(
+            "Observable evaluation-software events. "
+            "Not private model reasoning."
+        )
+        for event in trace:
+            with st.expander(
+                f"{event['step']:02d}  /  {event['event']}",
+                expanded=False,
+            ):
+                detail = event["detail"]
+                if isinstance(detail, dict):
+                    st.json(detail)
+                else:
+                    st.write(detail)
 
     st.markdown("#### Evidence integrity")
     stored_hash = record.get("output_sha256")
@@ -1407,12 +1430,12 @@ elif page == "Automation Lab":
         "recorder events, not private model reasoning."
     )
 
-else:
+elif page == "System X-Ray":
     st.markdown("## System X-Ray")
     st.write(
-        "Inspect persisted audit evidence and the observable events "
-        "recorded by the evaluation software. "
-        "This is not a model chain-of-thought viewer."
+        "Review bundled synthetic examples and session audit evidence. "
+        "Inspect recorded findings, evaluated outputs and observable "
+        "evaluation-software events."
     )
 
     inspectable_records = records + bundled_examples

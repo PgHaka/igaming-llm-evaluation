@@ -17,6 +17,7 @@ from evaluation.demo_loader import load_bundled_examples
 from ui.legacy_eval import render as render_legacy_eval
 from ui.legacy_eval import load_data
 from ui.system_icons import system_icon
+from ui.audit_presentation import support_audit_summary
 
 st.set_page_config(
     page_title="Operator AI Audit | Control Room",
@@ -942,7 +943,60 @@ elif page == "AI Support Lab":
         )
 
     if current and current["system_type"] == "support_bot":
-        result_panel(current)
+        summary = support_audit_summary(current)
+
+        with st.container(border=True):
+            st.caption("AUDIT OUTCOME / DEP_02")
+
+            if summary["outcome"] == "FAIL":
+                st.error("FAIL — " + summary["outcome_label"])
+            elif summary["outcome"] == "PASS":
+                st.success("PASS — " + summary["outcome_label"])
+            else:
+                st.warning("REVIEW — " + summary["outcome_label"])
+
+            st.markdown("### " + summary["title"])
+            st.write(summary["reason"])
+
+        st.markdown("#### Evidence comparison")
+        st.caption(
+            "SUPPLIED RESPONSE VS. AVAILABLE SYNTHETIC TRANSACTION FACTS"
+        )
+
+        response_column, facts_column = st.columns(2, gap="medium")
+
+        with response_column:
+            with st.container(border=True):
+                st.caption("SUPPLIED BOT OUTPUT")
+                st.write(
+                    summary["output"]
+                    if summary["output"].strip()
+                    else "No customer-facing response supplied."
+                )
+
+        with facts_column:
+            with st.container(border=True):
+                st.caption("VERIFIED SYNTHETIC FACTS")
+                st.markdown("**Deposit status:** FAILED")
+                st.markdown("**Refund status:** UNKNOWN")
+                st.markdown("**Refund arrival time:** NOT VERIFIED")
+
+        with st.expander("Technical reference", expanded=False):
+            st.markdown(
+                "**Control:** `" + summary["case_id"] + "`"
+            )
+            st.markdown(
+                "**Finding:** `" + str(summary["rule_id"]) + "`"
+            )
+            st.markdown(
+                "**Evaluator:** `" + str(summary["evaluator_version"]) + "`"
+            )
+            st.caption(
+                "The displayed finding and outcome come from the "
+                "recorded deterministic evaluation. The comparison "
+                "does not independently extract or classify claims."
+            )
+
     else:
         with st.container(border=True):
             st.caption("AWAITING EXECUTION")

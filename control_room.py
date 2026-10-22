@@ -858,19 +858,112 @@ elif page == "Audit Intelligence":
         render_legacy_eval("Overview")
 
 elif page == "Methodology":
-    render_legacy_eval("Methodology")
-    st.divider()
-    st.markdown("### Extended audit framework")
+    st.caption("METHODOLOGY / EVALUATION SCOPE & EVIDENCE")
+    st.markdown("## How the audit works")
     st.write(
-        "The new offline audit engine adds narrowly scoped deterministic "
-        "controls for synthetic support-bot responses and structured "
-        "payment-automation decisions. Evidence is stored separately."
+        "Operator AI Audit applies defined deterministic controls to supplied "
+        "synthetic support responses and structured automation decisions. "
+        "It records the result and supporting local evaluation evidence."
     )
-    st.warning(
+    st.caption(
+        "CURRENT FRAMEWORK · SYNTHETIC OFFLINE CONTROL · "
+        "NO LIVE MODEL OR OPERATOR EXECUTION"
+    )
+    st.divider()
+
+    st.caption("01 / CURRENT AUDIT WORKFLOW")
+    st.markdown("### From supplied output to inspectable evidence")
+    for title, description in (
+        (
+            "1. Supply a test output",
+            "Select a demonstration scenario or supply a response or JSON "
+            "decision against the defined DEP_02 synthetic facts.",
+        ),
+        (
+            "2. Apply the implemented control",
+            "The deterministic evaluator checks the supplied output against "
+            "its narrowly defined rules. This is not a general-purpose AI judge.",
+        ),
+        (
+            "3. Record the outcome",
+            "The local recorder captures PASS, FAIL or REVIEW, evaluator "
+            "findings, the evaluated output and observable software events.",
+        ),
+        (
+            "4. Inspect and export",
+            "System X-Ray exposes the recorded evidence. Audit Intelligence "
+            "summarises bundled examples and current-session audit runs "
+            "and generates a Markdown evidence report.",
+        ),
+    ):
+        with st.container(border=True):
+            st.markdown(f"**{title}**")
+            st.write(description)
+
+    st.divider()
+    st.caption("02 / OUTCOME INTERPRETATION")
+    st.markdown("### What does an audit result establish?")
+    left, middle, right = st.columns(3, gap="medium")
+    with left:
+        with st.container(border=True):
+            st.success("PASS")
+            st.write(
+                "The supplied output satisfied the implemented control. "
+                "This does not establish general correctness or reliability."
+            )
+    with middle:
+        with st.container(border=True):
+            st.error("FAIL")
+            st.write(
+                "The implemented control detected a defined violation "
+                "in the supplied output."
+            )
+    with right:
+        with st.container(border=True):
+            st.warning("REVIEW")
+            st.write(
+                "The automatic assessment was insufficient or inconclusive. "
+                "Human assessment is required."
+            )
+
+    st.divider()
+    st.caption("03 / EVIDENCE BOUNDARIES")
+    st.markdown("### What this demonstration does not establish")
+    st.write(
+        "Bundled fixtures are pre-supplied examples; visitor-generated audit "
+        "records belong to the current session. Historical human-reviewed "
+        "model evaluations are a separate evidence set."
+    )
+    st.write(
+        "SHA-256 checks the recorded output against its stored hash; it does "
+        "not independently verify provenance. Recorder events describe "
+        "observable local evaluation-software activity, not private model "
+        "reasoning or upstream execution."
+    )
+    st.info(
+        "No live model calls, operator monitoring or real payment actions "
+        "are performed by this interface. A control result is not a "
+        "production reliability or compliance certification."
+    )
+    st.caption(
         "CONTROL fixtures are synthetic. REPLAY provenance is not "
-        "independently verified. A deterministic PASS does not establish "
-        "production reliability. Live execution is disabled in this UI."
+        "independently verified."
     )
+
+    st.divider()
+    st.caption("04 / SEPARATE HISTORICAL EVIDENCE")
+    st.markdown("### Human-reviewed LLM evaluation")
+    st.write(
+        "The earlier portfolio study used manually submitted Prompt A/B "
+        "variants, recorded model responses and human-reviewed outcomes. "
+        "Its methodology and source files remain available below; these "
+        "historical results are not current deterministic audit runs."
+    )
+    with st.expander(
+        "Open historical evaluation methodology and source files",
+        expanded=False,
+    ):
+        render_legacy_eval("Methodology")
 
 elif page == "AI Support Lab":
     st.caption("AI SUPPORT / SYNTHETIC SIMULATION")

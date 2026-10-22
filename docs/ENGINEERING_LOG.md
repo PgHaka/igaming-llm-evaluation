@@ -452,3 +452,16 @@ Purpose:
 - No evaluator, evidence recorder or report generator logic was modified.
 - Scope: synthetic offline evidence reporting, not production monitoring, compliance certification or general model-performance measurement.
 - Implementation commit: 7801fd9 (Refine Audit Intelligence V2 reporting experience).
+
+## 2026-10-22 — Methodology V2: audit framework and evidence boundaries
+
+- Reorganised Methodology around the current Operator AI Audit framework.
+- Added a four-stage workflow: supplied output, deterministic control, recorded outcome, evidence inspection and export.
+- Clarified the narrow interpretation of PASS, FAIL and REVIEW.
+- Documented the separation between bundled synthetic examples, visitor-generated session records and historical human-reviewed model evaluations.
+- Clarified SHA-256 integrity scope, observable recorder events and the absence of live model execution, operator monitoring or real payment actions.
+- Preserved the original seven-step human-reviewed Prompt A/B methodology and source-file references inside a separate expandable section.
+- Browser-reviewed the current methodology, outcome cards, evidence boundaries and expanded historical methodology.
+- Regression suite: 69 tests passed. Python compilation and git diff --check passed.
+- No evaluator, evidence recorder or historical evaluation logic was modified.
+- Implementation commit: 2e90d62 (Refine Methodology V2 audit framework presentation).

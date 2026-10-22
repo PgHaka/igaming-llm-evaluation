@@ -439,3 +439,16 @@ Purpose:
 - Regression suite: 69 tests passed. Python compilation and git diff --check passed.
 - Scope: offline synthetic evidence inspection. Observable recorder events are not private model reasoning. Local SHA-256 verification does not independently establish provenance or production reliability.
 - Implementation commit: cbda5cf (Refine System X-Ray V2 evidence presentation).
+
+## 2026-10-22 — Audit Intelligence V2: evidence reporting
+
+- Refined bundled demonstration cards to display business-readable findings using the existing support and automation presentation functions.
+- Preserved the original recorded PASS/FAIL/REVIEW classifications and SHA-256 integrity indicators.
+- Clarified the Markdown export card, including report contents, evidence origins and synthetic offline scope.
+- Kept bundled examples separate from visitor-generated session activity.
+- Browser-reviewed both demonstration cards and the report export interface.
+- Validated the generated Markdown report with two bundled examples and zero session runs: origin counts, outcome counts, run IDs, SHA-256 hashes and interpretation limitations all passed.
+- Regression suite: 69 tests passed. Python compilation and git diff --check passed.
+- No evaluator, evidence recorder or report generator logic was modified.
+- Scope: synthetic offline evidence reporting, not production monitoring, compliance certification or general model-performance measurement.
+- Implementation commit: 7801fd9 (Refine Audit Intelligence V2 reporting experience).

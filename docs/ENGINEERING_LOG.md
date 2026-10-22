@@ -401,3 +401,16 @@ Purpose:
 - No cross-session audit appeared in the tested browser views.
 - This is a functional isolation check, not a comprehensive security or concurrency certification.
 - Public deployment remains unchanged.
+
+### 2026-10-22 — AI Support Lab: conversation-first audit presentation
+
+- Checkpoints: `b19ca09` (conversation-first support simulation) and `159fb70` (evidence-based audit presentation).
+- Reworked AI Support Lab into a simulated customer-support conversation with the editable test response behind an optional expander.
+- Added `ui/audit_presentation.py`, a presentation-only mapping from recorded evaluator outcomes and rule IDs to concise business-readable findings.
+- Evaluation Engine now presents Audit outcome, Evidence comparison and optional Technical reference. The supplied bot output is read from the recorded evidence rather than duplicated as a display fixture.
+- PASS remains explicitly scoped to the defined DEP_02 deterministic control; REVIEW remains inconclusive. Unknown rule IDs retain the evaluator's original explanation.
+- Technical Inspector and Automation Lab were preserved.
+- Verified FAIL and PASS presentation in the local browser. Restarted the local Streamlit process to load the updated presentation module.
+- Regression suite: 63/63 PASS.
+- Limitations: synthetic offline assessment; no live operator connection, live model execution, general semantic correctness guarantee or production reliability certification.
+- `HIPTHER_excel_sources.zip` remains untracked and excluded from commits.

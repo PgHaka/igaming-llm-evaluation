@@ -426,3 +426,16 @@ Purpose:
 - Regression suite: 69 tests passed. Python compilation and `git diff --check` passed.
 - Scope: offline synthetic simulation using supplied JSON. No live payment provider, operator account, external automation or production execution is connected. PASS establishes only satisfaction of the implemented narrow control.
 - Implementation commit: `a7dc9b6` (`Add evidence-based Automation Lab V2 audit presentation`).
+
+## 2026-10-22 — System X-Ray V2: evidence presentation
+
+- Refined System X-Ray into an explicit navigation branch.
+- Reused the existing support and automation audit presentation formatters to display business-readable findings without re-evaluating recorded outputs.
+- Preserved original evaluator findings and rule identifiers in a collapsed technical section.
+- Grouped the four observable recorder events into a collapsed Technical Inspector, with individually expandable event details.
+- Preserved evaluated outputs, deterministic checks, raw evidence and local SHA-256 output-integrity verification.
+- Updated page terminology to distinguish bundled synthetic examples from session-generated audit evidence.
+- Browser-reviewed the Support Bot FAIL and Payment Automation PASS presentations, plus the Technical Inspector layout and evidence-integrity display.
+- Regression suite: 69 tests passed. Python compilation and git diff --check passed.
+- Scope: offline synthetic evidence inspection. Observable recorder events are not private model reasoning. Local SHA-256 verification does not independently establish provenance or production reliability.
+- Implementation commit: cbda5cf (Refine System X-Ray V2 evidence presentation).

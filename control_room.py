@@ -688,7 +688,7 @@ elif page == "Audit Intelligence":
         )
         system_label = {
             "support_bot": "AI SUPPORT BOT",
-            "payment_automation": "PAYMENT AUTOMATION",
+            "payment_automation": "PAYMENT WORKFLOW AUDIT",
         }.get(example["system_type"], example["system_type"].upper())
 
         with column:
@@ -747,7 +747,7 @@ elif page == "Audit Intelligence":
         st.markdown("#### System-level outcomes")
         for system_type, title in (
             ("support_bot", "AI Support Bot"),
-            ("payment_automation", "Payment Automation"),
+            ("payment_automation", "Payment Workflow Audit"),
         ):
             subset = [
                 r for r in records if r["system_type"] == system_type

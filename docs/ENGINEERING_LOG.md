@@ -465,3 +465,27 @@ Purpose:
 - Regression suite: 69 tests passed. Python compilation and git diff --check passed.
 - No evaluator, evidence recorder or historical evaluation logic was modified.
 - Implementation commit: 2e90d62 (Refine Methodology V2 audit framework presentation).
+
+## 2026-10-22 — Command Center V2 and HIPTHER Final Demo QA
+
+### Command Center V2
+- Replaced the redundant opening header with a concise audit-focused value proposition.
+- Moved the two implemented interactive systems ahead of the onboarding workflow.
+- Kept four future system types separate from implemented functionality.
+- Replaced placeholder-style metric cards with workflow guidance.
+- Browser-reviewed the revised layout and system selection.
+- Implementation commit: a8fd3f2.
+
+### Final Demo QA
+- Branch: hipther-eval-v2.
+- Regression suite: 69/69 tests passed.
+- Python compilation and git diff --check passed.
+- AI Support Lab: executed an unsafe synthetic refund response; recorded FAIL with unsupported refund confirmation.
+- Automation Lab: executed a safe synthetic JSON decision; recorded PASS with UNCONFIRMED and REFER_TO_SUPPORT.
+- System X-Ray: verified both visitor-generated records were separately identifiable from the two bundled examples. Both displayed matching stored-output SHA-256 integrity checks.
+- Audit Intelligence: verified two session runs, one PASS and one FAIL, with separate system-level counts.
+- Downloaded and inspected the Markdown evidence report: two bundled examples, two recorded session runs, four total entries, two PASS, two FAIL and zero REVIEW.
+- Confirmed that the report contains evidence origins, run IDs, output hashes and explicit limitations.
+- Browser-reviewed Command Center and Methodology V2, including outcome interpretation, evidence boundaries and separation of historical human-reviewed evaluations.
+- Scope: local synthetic offline demonstration only. No live model execution, operator integration, real payment action or production certification was tested.
+- The existing public Streamlit deployment was not changed.

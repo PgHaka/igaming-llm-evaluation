@@ -398,7 +398,7 @@ page = st.sidebar.radio(
         "Command Center",
         "LLM Evaluation Lab",
         "AI Support Lab",
-        "Automation Lab",
+        "Payment Workflow Audit",
         "System X-Ray",
         "Audit Intelligence",
         "Methodology",
@@ -458,7 +458,7 @@ if page == "Command Center":
 
     available_systems = [
         ("AI Support Bot", "Customer-facing AI", True),
-        ("Payment Automation", "Behind-the-scenes AI", True),
+        ("Payment Automation", "Internal workflow quality control", True),
     ]
 
     roadmap_systems = [
@@ -487,8 +487,23 @@ if page == "Command Center":
                         system_icon(name, implemented=implemented),
                         unsafe_allow_html=True,
                     )
-                    st.markdown(f"#### {name}")
+                    display_name = (
+                        "Payment Workflow Audit"
+                        if name == "Payment Automation"
+                        else name
+                    )
+                    st.markdown(f"#### {display_name}")
                     st.caption(description)
+                    if name == "AI Support Bot":
+                        st.markdown(
+                            "**Your AI support bot is always available. "
+                            "But is it always accurate?**"
+                        )
+                    if name == "Payment Automation":
+                        st.markdown(
+                            "**Automation reduces manual workload. "
+                            "But who validates the automation?**"
+                        )
                     if implemented:
                         selected = st.session_state["selected_system"] == name
                         st.button(
@@ -512,7 +527,7 @@ if page == "Command Center":
     selected = st.session_state["selected_system"]
     destination = (
         "AI Support Lab" if selected == "AI Support Bot"
-        else "Automation Lab"
+        else "Payment Workflow Audit"
     )
 
     st.markdown("### Your first audit")
@@ -532,16 +547,19 @@ if page == "Command Center":
             )
             action_label = "EXPLORE AI SUPPORT DEMO  →"
         else:
-            st.markdown("### Can payment automation make an unsupported decision?")
+            st.markdown("### Who validates your automated payment workflow?")
             st.write(
-                "Examine a synthetic failed-deposit event and compare "
-                "safe and unsafe automated refund decisions."
+                "Payment-case automation can help teams reduce repetitive "
+                "manual work, particularly when exception volumes increase. "
+                "But its recommendations still need quality controls."
             )
             st.write(
-                "Run the audit and inspect whether the supplied decision "
-                "follows the available transaction facts."
+                "Explore a fictional internal payment workflow. Compare "
+                "supplied safe and unsafe handling recommendations, then "
+                "audit whether they are supported by the available "
+                "synthetic transaction facts."
             )
-            action_label = "EXPLORE PAYMENT DEMO  →"
+            action_label = "EXPLORE PAYMENT WORKFLOW AUDIT  →"
 
         st.button(
             action_label,
@@ -1251,13 +1269,29 @@ elif page == "AI Support Lab":
         "recorder events, not private model reasoning."
     )
 
-elif page == "Automation Lab":
-    st.caption("PAYMENT AUTOMATION / SYNTHETIC SIMULATION")
-    st.markdown("## Automation Lab")
-    st.write(
-        "Inspect a supplied structured payment decision and evaluate "
-        "whether it asserts an unsupported refund outcome."
+elif page == "Payment Workflow Audit":
+    st.caption("INTERNAL PAYMENT WORKFLOW / SYNTHETIC DEMONSTRATION")
+    st.markdown("## Payment Workflow Audit")
+    st.markdown(
+        "### Automation reduces manual workload. "
+        "But who validates the automation?"
     )
+
+    with st.container(border=True):
+        st.caption("01 / THE CHALLENGE")
+        st.write(
+            "Payment incidents can overwhelm support and Payments teams. "
+            "Automation helps handle the workload — but its recommendations "
+            "still need quality control."
+        )
+        st.caption("02 / THE AUDIT")
+        st.write(
+            "Test whether a fictional internal payment workflow recommends "
+            "an action supported by the available transaction facts."
+        )
+        st.caption(
+            "OFFLINE SYNTHETIC DEMO · NO PAYMENT EXECUTION"
+        )
 
     a, b, c = st.columns(3)
     a.metric("TEST CASES IN THIS LAB", "01")
@@ -1297,7 +1331,7 @@ elif page == "Automation Lab":
     st.caption("DEP_02 / PAYMENT DECISION / SYNTHETIC VERIFIED FACTS")
 
     st.divider()
-    st.markdown("### 02 / Payment Automation Simulation")
+    st.markdown("### 02 / Evaluate a Payment Workflow Recommendation")
 
     with st.container(border=True):
         st.caption("SYNTHETIC INPUT EVENT")
@@ -1418,6 +1452,46 @@ elif page == "Automation Lab":
 
         st.markdown("#### " + summary["title"])
         st.write(summary["reason"])
+
+        with st.container(border=True):
+            st.caption("BUSINESS INTERPRETATION / WHY THIS MATTERS")
+
+            if summary["outcome"] == "FAIL":
+                st.markdown(
+                    "**The workflow recommends an action that the "
+                    "available evidence does not justify.**"
+                )
+                st.write(
+                    "In this synthetic case, the supplied automation "
+                    "output treats an unverified refund as approved and "
+                    "recommends confirming it. The independent audit "
+                    "flags this unsupported recommendation, making the "
+                    "issue visible before the workflow is relied upon."
+                )
+                st.caption(
+                    "This is a detected test failure, not a blocked "
+                    "production payment or an actual refund event."
+                )
+            elif summary["outcome"] == "PASS":
+                st.markdown(
+                    "**The supplied recommendation satisfies the "
+                    "implemented control for this test case.**"
+                )
+                st.write(
+                    "The workflow does not claim a refund outcome "
+                    "that the available synthetic facts cannot confirm. "
+                    "This demonstrates a successful local control check, "
+                    "not end-to-end automation safety."
+                )
+            else:
+                st.markdown(
+                    "**The supplied output needs further assessment.**"
+                )
+                st.write(
+                    "The implemented control has not established a "
+                    "definitive PASS or FAIL for this supplied output. "
+                    "Do not interpret REVIEW as an approval."
+                )
 
         st.markdown("#### Evidence comparison")
         decision_col, facts_col = st.columns(2, gap="medium")

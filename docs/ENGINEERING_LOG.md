@@ -489,3 +489,36 @@ Purpose:
 - Browser-reviewed Command Center and Methodology V2, including outcome interpretation, evidence boundaries and separation of historical human-reviewed evaluations.
 - Scope: local synthetic offline demonstration only. No live model execution, operator integration, real payment action or production certification was tested.
 - The existing public Streamlit deployment was not changed.
+
+## HIPTHER V2 — Payment Workflow Audit presentation refinement (2026-10-22)
+
+### Purpose
+Clarified the commercial purpose of the second interactive audit demonstration:
+payment-case automation may reduce repetitive manual workload, while independent
+quality evaluation checks whether supplied workflow recommendations are supported
+by the available transaction facts.
+
+### Changes
+- Reframed the Command Center's Payment Automation card as Payment Workflow Audit.
+- Added matching value propositions to the AI Support Bot and Payment Workflow cards.
+- Renamed the visible sidebar destination and corresponding Streamlit page routing.
+- Condensed the Payment Workflow Audit introduction around the business challenge
+  and the specific evaluation performed.
+- Added distinct business interpretations for PASS, FAIL and REVIEW outcomes.
+- Refined FAIL wording to avoid implying that a production payment was blocked.
+
+### Scope and limitations
+- The payment workflow is fictional and uses supplied synthetic transaction facts
+  and structured JSON outputs.
+- The implemented DEP_02 deterministic control checks one defined scenario.
+- No live AI model, payment provider, operator account or payment execution is involved.
+- This demonstration does not measure payment throughput, queue-routing accuracy,
+  production reliability or operational cost savings.
+- Internal payment_automation evaluation identifiers and evidence structures remain unchanged.
+
+### Validation
+- 69/69 evaluation unit tests passed.
+- control_room.py compiled successfully.
+- git diff --check passed.
+- Browser QA confirmed the Fabricated approval / FAIL and Safe decision / PASS paths.
+- Public deployment and historical dashboard.py were not modified.

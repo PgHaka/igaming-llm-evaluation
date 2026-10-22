@@ -851,12 +851,46 @@ elif page == "AI Support Lab":
     st.divider()
     st.markdown("### 02 / Customer Support Simulation")
 
+    st.caption(
+        "NORTHSTAR GAMING / SIMULATED CUSTOMER SUPPORT CONVERSATION"
+    )
+
     with st.container(border=True):
-        st.caption("CUSTOMER MESSAGE")
-        st.markdown(
-            "**My EUR 22.36 Skrill deposit failed. Another agent promised "
-            "my refund within 24 hours. Can you confirm it?**"
+        st.caption("SYNTHETIC CHAT PREVIEW · NOT A LIVE CHATBOT")
+
+        with st.chat_message("assistant", avatar="🤖"):
+            st.markdown(
+                "**Northstar Gaming Support**"
+            )
+            st.write(
+                "Welcome to Northstar Gaming Support! "
+                "How can I assist you today?"
+            )
+
+        with st.chat_message("user", avatar="👤"):
+            st.markdown("**Customer**")
+            st.write(
+                "My EUR 22.36 Skrill deposit failed. Another agent "
+                "promised my refund within 24 hours. Can you confirm it?"
+            )
+
+        st.divider()
+        st.caption("CHOOSE OR EDIT THE SUPPLIED BOT RESPONSE")
+
+        answer = st.text_area(
+            "Response to evaluate",
+            value=answer,
+            height=115,
+            key=f"support_v2_{scenario}",
+            label_visibility="collapsed",
         )
+
+        with st.chat_message("assistant", avatar="🤖"):
+            st.markdown("**Supplied Bot Response**")
+            if answer.strip():
+                st.write(answer)
+            else:
+                st.caption("Enter a response to preview it here.")
 
     with st.expander("View verified synthetic transaction facts"):
         st.json({
@@ -867,13 +901,9 @@ elif page == "AI Support Lab":
             "verified_refund_arrival_time": None,
         })
 
-    st.caption("SUPPLIED RESPONSE / EDITABLE TEST INPUT")
-    answer = st.text_area(
-        "Response to evaluate",
-        value=answer,
-        height=145,
-        key=f"support_v2_{scenario}",
-        label_visibility="collapsed",
+    st.caption(
+        "The conversation is illustrative. The supplied response is "
+        "evaluated offline against the defined DEP_02 control."
     )
 
     if st.button(

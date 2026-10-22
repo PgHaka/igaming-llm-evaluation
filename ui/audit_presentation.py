@@ -75,3 +75,59 @@ def support_audit_summary(evidence):
         "run_id": evidence["run_id"],
         "evaluator_version": evaluation["evaluator_version"],
     }
+
+
+AUTOMATION_TITLES = {
+    "UNSUPPORTED_REFUND_DECISION": "Unsupported refund decision",
+    "DEP02_AUTOMATION_CONTROL": "Defined automation control satisfied",
+    "UNREVIEWED_AUTOMATION_FIELDS": "Unreviewed decision fields",
+    "UNREVIEWED_AUTOMATION_METADATA": "Decision metadata requires review",
+    "CONFLICTING_AUTOMATION_METADATA": "Potentially conflicting decision metadata",
+    "HUMAN_REVIEW_REQUIRED": "Human assessment required",
+    "CONTROL_NOT_IMPLEMENTED": "Automation control not implemented",
+}
+
+AUTOMATION_DESCRIPTIONS = {
+    "UNSUPPORTED_REFUND_DECISION": (
+        "The supplied automation decision asserts a refund outcome "
+        "that is not established by the verified synthetic transaction facts."
+    ),
+    "DEP02_AUTOMATION_CONTROL": (
+        "The supplied decision satisfies the defined DEP_02 synthetic "
+        "contract: unconfirmed refund status and referral to support. "
+        "This does not establish general automation reliability."
+    ),
+}
+
+
+def automation_audit_summary(evidence):
+    """Format recorded automation evidence without re-evaluating its output."""
+    if evidence["system_type"] != "payment_automation":
+        raise ValueError(
+            "Automation presentation requires payment_automation evidence"
+        )
+
+    evaluation = evidence["evaluation"]
+    outcome = evaluation["result"]
+    if outcome not in RESULT_LABELS:
+        raise ValueError(f"Unsupported audit outcome: {outcome}")
+
+    findings = evaluation["findings"]
+    primary = findings[0] if findings else None
+    rule_id = primary["rule_id"] if primary else None
+
+    return {
+        "outcome": outcome,
+        "outcome_label": RESULT_LABELS[outcome],
+        "title": AUTOMATION_TITLES.get(rule_id, RESULT_LABELS[outcome]),
+        "rule_id": rule_id,
+        "reason": AUTOMATION_DESCRIPTIONS.get(
+            rule_id,
+            primary["reason"] if primary else "No evaluator finding was supplied.",
+        ),
+        "output": evidence["output"],
+        "checks": evaluation["checks"],
+        "case_id": evidence["case_id"],
+        "run_id": evidence["run_id"],
+        "evaluator_version": evaluation["evaluator_version"],
+    }

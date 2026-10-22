@@ -17,7 +17,10 @@ from evaluation.demo_loader import load_bundled_examples
 from ui.legacy_eval import render as render_legacy_eval
 from ui.legacy_eval import load_data
 from ui.system_icons import system_icon
-from ui.audit_presentation import support_audit_summary
+from ui.audit_presentation import (
+    support_audit_summary,
+    automation_audit_summary,
+)
 
 st.set_page_config(
     page_title="Operator AI Audit | Control Room",
@@ -1152,14 +1155,65 @@ elif page == "Automation Lab":
             "verified_refund_status": "UNKNOWN",
         })
 
-    st.caption("SUPPLIED AUTOMATION DECISION / EDITABLE JSON")
-    raw = st.text_area(
-        "Automation output (JSON)",
-        value=json.dumps(initial, indent=2),
-        height=170,
-        key=f"automation_v2_{scenario}",
-        label_visibility="collapsed",
+    decision_key = f"automation_v2_{scenario}"
+    if decision_key not in st.session_state:
+        st.session_state[decision_key] = json.dumps(initial, indent=2)
+
+    with st.expander("✎ Edit supplied JSON decision", expanded=False):
+        raw = st.text_area(
+            "Automation output (JSON)",
+            height=170,
+            key=decision_key,
+            label_visibility="collapsed",
+        )
+
+    recorded_decision = st.session_state.get("latest_result")
+    decision_evaluated = (
+        recorded_decision is not None
+        and recorded_decision.get("system_type") == "payment_automation"
+        and st.session_state.get("automation_evaluated_raw") == raw
     )
+    st.caption(
+        "SUPPLIED AUTOMATION DECISION / "
+        + ("EVALUATED" if decision_evaluated else "NOT YET EVALUATED")
+    )
+
+    try:
+        preview = json.loads(raw)
+    except json.JSONDecodeError:
+        st.warning("Invalid JSON — edit the supplied decision before auditing.")
+    else:
+        if not isinstance(preview, dict):
+            st.warning("The supplied decision must be a JSON object.")
+        else:
+            with st.container(border=True):
+                left, right = st.columns(2, gap="medium")
+                with left:
+                    st.caption("REFUND STATUS")
+                    st.markdown(
+                        "**" + str(preview.get("refund_status", "NOT SUPPLIED")) + "**"
+                    )
+                with right:
+                    st.caption("RECOMMENDED ACTION")
+                    st.markdown(
+                        "**" + str(preview.get("recommended_action", "NOT SUPPLIED")) + "**"
+                    )
+                extra_fields = {
+                    key: value for key, value in preview.items()
+                    if key not in {"refund_status", "recommended_action"}
+                }
+                if extra_fields:
+                    with st.expander("Additional supplied decision fields"):
+                        st.json(extra_fields)
+            st.caption(
+                "Preview of supplied JSON only. No payment action has been "
+                "executed."
+                + (
+                    " The matching recorded audit appears below."
+                    if decision_evaluated
+                    else " Run the audit to establish a control outcome."
+                )
+            )
 
     if st.button(
         "RUN DEMO AUDIT  →",
@@ -1193,7 +1247,51 @@ elif page == "Automation Lab":
             )
 
     if current and current["system_type"] == "payment_automation":
-        result_panel(current)
+        summary = automation_audit_summary(current)
+
+        st.caption("AUDIT OUTCOME / RECORDED DETERMINISTIC EVALUATION")
+        if summary["outcome"] == "FAIL":
+            st.error("FAIL — " + summary["outcome_label"])
+        elif summary["outcome"] == "PASS":
+            st.success("PASS — " + summary["outcome_label"])
+        else:
+            st.warning("REVIEW — " + summary["outcome_label"])
+
+        st.markdown("#### " + summary["title"])
+        st.write(summary["reason"])
+
+        st.markdown("#### Evidence comparison")
+        decision_col, facts_col = st.columns(2, gap="medium")
+
+        with decision_col:
+            with st.container(border=True):
+                st.caption("RECORDED AUTOMATION OUTPUT")
+                st.json(summary["output"], expanded=True)
+
+        with facts_col:
+            with st.container(border=True):
+                st.caption("VERIFIED SYNTHETIC TRANSACTION FACTS")
+                st.markdown("**Deposit status:** FAILED")
+                st.markdown("**Refund status:** UNKNOWN")
+                st.markdown("**Verified refund arrival time:** Not supplied")
+                st.caption(
+                    "The supplied transaction data does not establish "
+                    "refund approval or completion."
+                )
+
+        with st.expander("Technical reference"):
+            st.write(f"**Case:** `{summary['case_id']}`")
+            st.write(f"**Rule:** `{summary['rule_id']}`")
+            st.write(f"**Evaluator:** `{summary['evaluator_version']}`")
+            st.write(f"**Run ID:** `{summary['run_id']}`")
+            if summary["checks"]:
+                st.markdown("**Defined checks**")
+                st.json(summary["checks"], expanded=False)
+
+        st.caption(
+            "Offline synthetic assessment. A control PASS does not "
+            "establish production reliability."
+        )
     else:
         with st.container(border=True):
             st.caption("AWAITING EXECUTION")

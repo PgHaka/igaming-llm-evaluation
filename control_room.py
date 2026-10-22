@@ -875,22 +875,31 @@ elif page == "AI Support Lab":
             )
 
         st.divider()
-        st.caption("CHOOSE OR EDIT THE SUPPLIED BOT RESPONSE")
+        st.caption("SUPPLIED SYNTHETIC BOT RESPONSE / TEST INPUT")
 
-        answer = st.text_area(
-            "Response to evaluate",
-            value=answer,
-            height=115,
-            key=f"support_v2_{scenario}",
-            label_visibility="collapsed",
-        )
+        response_key = f"support_v2_{scenario}"
+        if response_key not in st.session_state:
+            st.session_state[response_key] = answer
 
         with st.chat_message("assistant", avatar="🤖"):
             st.markdown("**Supplied Bot Response**")
-            if answer.strip():
-                st.write(answer)
+            preview = st.session_state[response_key]
+            if preview.strip():
+                st.write(preview)
             else:
-                st.caption("Enter a response to preview it here.")
+                st.caption("No response supplied yet.")
+
+        with st.expander("✎ Edit test response", expanded=False):
+            st.caption(
+                "Edit the supplied synthetic response to test a different "
+                "wording. This does not call a live AI model."
+            )
+            answer = st.text_area(
+                "Response to evaluate",
+                key=response_key,
+                height=115,
+                label_visibility="collapsed",
+            )
 
     with st.expander("View verified synthetic transaction facts"):
         st.json({
@@ -907,7 +916,7 @@ elif page == "AI Support Lab":
     )
 
     if st.button(
-        "RUN DEMO AUDIT  →",
+        "AUDIT THIS RESPONSE  →",
         type="primary",
         use_container_width=True,
         key="run_support_v2",

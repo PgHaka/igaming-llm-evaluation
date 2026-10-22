@@ -815,7 +815,7 @@ elif page == "Audit Intelligence":
             st.markdown("#### Your audit workspace is ready")
             st.write(
                 "No visitor-generated audit runs in this session yet. "
-                "Start with AI Support Lab or Automation Lab to create "
+                "Start with AI Support Lab or Payment Workflow Audit to create "
                 "your first synthetic control record."
             )
             st.caption(

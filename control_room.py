@@ -392,64 +392,35 @@ st.sidebar.caption("LIVE MODEL EXECUTION: DISABLED")
 records = load_evidence()
 bundled_examples = load_bundled_examples()
 
-st.markdown("# Operator AI Audit")
-st.caption(
-    "CONTROL ROOM  /  SYNTHETIC PROOF OF CONCEPT  /  "
-    "INDEPENDENT EVALUATION"
-)
-st.divider()
+if page != "Command Center":
+    st.markdown("# Operator AI Audit")
+    st.caption(
+        "CONTROL ROOM  /  SYNTHETIC PROOF OF CONCEPT  /  "
+        "INDEPENDENT EVALUATION"
+    )
+    st.divider()
 
 if page == "Command Center":
     st.caption("OPERATOR AI AUDIT / INDEPENDENT QUALITY CONTROL")
     st.markdown("# Is your automation behaving as expected?")
     st.markdown(
-        "Your AI systems make decisions and communicate with customers. "
-        "But how do you know they are following the rules?"
-    )
-    st.write(
-        "Operator AI Audit helps you test defined operational controls, "
-        "identify potential violations and inspect the evidence behind "
-        "each result."
+        "Test defined operational controls. Detect unsupported AI outputs. "
+        "Inspect the evidence behind every recorded result."
     )
 
     with st.container(border=True):
-        st.caption("THE PROBLEM WE ARE SOLVING")
+        st.caption("WHY THIS MATTERS")
         st.markdown("### A convincing AI answer can still be wrong.")
         st.write(
-            "A customer-support bot might promise an unverified refund. "
-            "A payment automation might recommend an action that the "
+            "A support bot may promise an unverified refund. "
+            "A payment automation may recommend a decision that the "
             "available transaction facts do not justify."
         )
-        st.write(
-            "This demonstration makes defined control violations visible, "
-            "understandable and reviewable."
+        st.caption(
+            "OFFLINE SYNTHETIC DEMONSTRATION · "
+            "NO LIVE MODEL EXECUTION OR OPERATOR INTEGRATIONS"
         )
 
-    st.markdown("### How it works")
-    step_one, step_two, step_three = st.columns(3, gap="medium")
-
-    with step_one:
-        with st.container(border=True):
-            st.caption("01 / SELECT")
-            st.markdown("#### Choose a system")
-            st.write("Select the automation environment you want to examine.")
-
-    with step_two:
-        with st.container(border=True):
-            st.caption("02 / TEST")
-            st.markdown("#### Run a scenario")
-            st.write("Evaluate a supplied output against a defined synthetic control.")
-
-    with step_three:
-        with st.container(border=True):
-            st.caption("03 / UNDERSTAND")
-            st.markdown("#### Inspect the result")
-            st.write("Review the finding, observable trace and recorded evidence.")
-
-    st.caption(
-        "SYNTHETIC OFFLINE PROOF OF CONCEPT · "
-        "NO LIVE MODEL EXECUTION OR OPERATOR INTEGRATIONS"
-    )
     st.divider()
 
     st.caption("01 / SYSTEM SELECTION")
@@ -462,19 +433,22 @@ if page == "Command Center":
     if "selected_system" not in st.session_state:
         st.session_state["selected_system"] = "AI Support Bot"
 
-    systems = [
+    available_systems = [
         ("AI Support Bot", "Customer-facing AI", True),
         ("Payment Automation", "Behind-the-scenes AI", True),
+    ]
+
+    roadmap_systems = [
         ("KYC Decision Engine", "Verification automation", False),
         ("Knowledge Retrieval", "RAG / data pipeline", False),
         ("Bonus Automation", "Promotion eligibility", False),
         ("Model Regression Lab", "Version comparison", False),
     ]
 
-    for row_start in range(0, len(systems), 2):
+    for row_start in range(0, len(available_systems), 2):
         left, right = st.columns(2, gap="medium")
         for column, (name, description, implemented) in zip(
-            (left, right), systems[row_start:row_start + 2]
+            (left, right), available_systems[row_start:row_start + 2]
         ):
             with column:
                 card_state = (
@@ -510,6 +484,7 @@ if page == "Command Center":
                             disabled=True,
                             use_container_width=True,
                         )
+
 
     selected = st.session_state["selected_system"]
     destination = (
@@ -563,13 +538,66 @@ if page == "Command Center":
         "Other systems are future modules, not active integrations."
     )
 
+
+    st.markdown("### Future modules")
+    st.caption("PRODUCT ROADMAP / NOT IMPLEMENTED")
+    for row_start in range(0, len(roadmap_systems), 2):
+        left, right = st.columns(2, gap="medium")
+        for column, (name, description, implemented) in zip(
+            (left, right), roadmap_systems[row_start:row_start + 2]
+        ):
+            with column:
+                card_state = (
+                    "selected"
+                    if implemented and st.session_state["selected_system"] == name
+                    else "available" if implemented else "roadmap"
+                )
+                with st.container(
+                    border=True,
+                    key=f"audit_card_{card_state}_{name.lower().replace(chr(32), chr(95))}",
+                ):
+                    st.markdown(
+                        system_icon(name, implemented=implemented),
+                        unsafe_allow_html=True,
+                    )
+                    st.markdown(f"#### {name}")
+                    st.caption(description)
+                    if implemented:
+                        selected = st.session_state["selected_system"] == name
+                        st.button(
+                            "✓ SELECTED" if selected else "SELECT SYSTEM  →",
+                            key=f"select_{name}",
+                            type="primary" if selected else "secondary",
+                            use_container_width=True,
+                            on_click=lambda value=name: st.session_state.update(
+                                selected_system=value
+                            ),
+                        )
+                    else:
+                        st.button(
+                            "ROADMAP · NOT IMPLEMENTED",
+                            key=f"roadmap_{name}",
+                            disabled=True,
+                            use_container_width=True,
+                        )
+
     st.divider()
     st.caption("02 / OBSERVABLE AUDIT WORKFLOW")
-    a, b, c, d = st.columns(4)
-    a.metric("TEST", "01", help="Submit a supplied synthetic output")
-    b.metric("DETECT", "02", help="Run implemented deterministic controls")
-    c.metric("INSPECT", "03", help="Inspect locally recorded evidence")
-    d.metric("REPORT", "04", help="Export a scoped audit summary")
+    st.markdown("### From test input to reviewable evidence")
+
+    workflow = [
+        ("01 / TEST", "Submit a supplied synthetic output."),
+        ("02 / DETECT", "Evaluate defined operational controls."),
+        ("03 / INSPECT", "Inspect recorded audit evidence."),
+        ("04 / REPORT", "Export a scoped audit summary."),
+    ]
+
+    columns = st.columns(4, gap="medium")
+    for column, (stage, description) in zip(columns, workflow):
+        with column:
+            with st.container(border=True):
+                st.markdown(f"#### {stage}")
+                st.write(description)
 
     st.divider()
     st.markdown("### Local evidence snapshot")

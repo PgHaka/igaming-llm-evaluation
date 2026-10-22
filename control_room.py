@@ -16,6 +16,7 @@ from evaluation.audit_report import generate_audit_report
 from evaluation.demo_loader import load_bundled_examples
 from ui.legacy_eval import render as render_legacy_eval
 from ui.legacy_eval import load_data
+from ui.system_icons import system_icon
 
 st.set_page_config(
     page_title="Operator AI Audit | Control Room",
@@ -395,29 +396,80 @@ st.caption(
 st.divider()
 
 if page == "Command Center":
-    st.caption("01 / SYSTEM SELECTION")
-    st.markdown("## Select a system to audit")
-    st.write("One evaluation framework. Multiple automation environments.")
+    st.caption("OPERATOR AI AUDIT / INDEPENDENT QUALITY CONTROL")
+    st.markdown("# Is your automation behaving as expected?")
+    st.markdown(
+        "Your AI systems make decisions and communicate with customers. "
+        "But how do you know they are following the rules?"
+    )
+    st.write(
+        "Operator AI Audit helps you test defined operational controls, "
+        "identify potential violations and inspect the evidence behind "
+        "each result."
+    )
+
+    with st.container(border=True):
+        st.caption("THE PROBLEM WE ARE SOLVING")
+        st.markdown("### A convincing AI answer can still be wrong.")
+        st.write(
+            "A customer-support bot might promise an unverified refund. "
+            "A payment automation might recommend an action that the "
+            "available transaction facts do not justify."
+        )
+        st.write(
+            "This demonstration makes defined control violations visible, "
+            "understandable and reviewable."
+        )
+
+    st.markdown("### How it works")
+    step_one, step_two, step_three = st.columns(3, gap="medium")
+
+    with step_one:
+        with st.container(border=True):
+            st.caption("01 / SELECT")
+            st.markdown("#### Choose a system")
+            st.write("Select the automation environment you want to examine.")
+
+    with step_two:
+        with st.container(border=True):
+            st.caption("02 / TEST")
+            st.markdown("#### Run a scenario")
+            st.write("Evaluate a supplied output against a defined synthetic control.")
+
+    with step_three:
+        with st.container(border=True):
+            st.caption("03 / UNDERSTAND")
+            st.markdown("#### Inspect the result")
+            st.write("Review the finding, observable trace and recorded evidence.")
+
     st.caption(
-        "SYNTHETIC DEMO · TWO IMPLEMENTED CONTROL LABS · "
-        "NO LIVE OPERATOR INTEGRATIONS"
+        "SYNTHETIC OFFLINE PROOF OF CONCEPT · "
+        "NO LIVE MODEL EXECUTION OR OPERATOR INTEGRATIONS"
+    )
+    st.divider()
+
+    st.caption("01 / SYSTEM SELECTION")
+    st.markdown("## Choose your audit environment")
+    st.write(
+        "Start with one of the two interactive demonstrations below. "
+        "Additional system types are shown as future modules."
     )
 
     if "selected_system" not in st.session_state:
-        st.session_state["selected_system"] = "Payment Automation"
+        st.session_state["selected_system"] = "AI Support Bot"
 
     systems = [
-        ("AI Support Bot", "Customer-facing AI", True, "◈"),
-        ("Payment Automation", "Behind-the-scenes AI", True, "▣"),
-        ("KYC Decision Engine", "Verification automation", False, "◌"),
-        ("Knowledge Retrieval", "RAG / data pipeline", False, "▤"),
-        ("Bonus Automation", "Promotion eligibility", False, "◇"),
-        ("Model Regression Lab", "Version comparison", False, "⑂"),
+        ("AI Support Bot", "Customer-facing AI", True),
+        ("Payment Automation", "Behind-the-scenes AI", True),
+        ("KYC Decision Engine", "Verification automation", False),
+        ("Knowledge Retrieval", "RAG / data pipeline", False),
+        ("Bonus Automation", "Promotion eligibility", False),
+        ("Model Regression Lab", "Version comparison", False),
     ]
 
     for row_start in range(0, len(systems), 2):
         left, right = st.columns(2, gap="medium")
-        for column, (name, description, implemented, symbol) in zip(
+        for column, (name, description, implemented) in zip(
             (left, right), systems[row_start:row_start + 2]
         ):
             with column:
@@ -430,7 +482,11 @@ if page == "Command Center":
                     border=True,
                     key=f"audit_card_{card_state}_{name.lower().replace(chr(32), chr(95))}",
                 ):
-                    st.markdown(f"#### {symbol} {name}")
+                    st.markdown(
+                        system_icon(name, implemented=implemented),
+                        unsafe_allow_html=True,
+                    )
+                    st.markdown(f"#### {name}")
                     st.caption(description)
                     if implemented:
                         selected = st.session_state["selected_system"] == name
@@ -457,28 +513,46 @@ if page == "Command Center":
         else "Automation Lab"
     )
 
-    st.markdown("### Selected audit environment")
+    st.markdown("### Your first audit")
     with st.container(border=True):
-        st.caption("ACTIVE SYSTEM / SYNTHETIC CONTROL LAB")
-        st.markdown(f"### {selected}")
+        st.caption("READY TO EXPLORE / INTERACTIVE SYNTHETIC DEMO")
+
         if selected == "AI Support Bot":
+            st.markdown("### Can a chatbot promise an unverified refund?")
             st.write(
-                "Customer message → supplied response → deterministic "
-                "refund-claim evaluation → locally recorded evidence."
+                "Follow a realistic-looking customer-support conversation "
+                "in which a customer asks whether a failed deposit has "
+                "already been refunded."
             )
+            st.write(
+                "Compare supplied safe and unsafe chatbot responses, "
+                "run the audit and see exactly which defined rule was triggered."
+            )
+            action_label = "EXPLORE AI SUPPORT DEMO  →"
         else:
+            st.markdown("### Can payment automation make an unsupported decision?")
             st.write(
-                "Synthetic deposit event → structured automation decision "
-                "→ deterministic refund-status evaluation → evidence."
+                "Examine a synthetic failed-deposit event and compare "
+                "safe and unsafe automated refund decisions."
             )
+            st.write(
+                "Run the audit and inspect whether the supplied decision "
+                "follows the available transaction facts."
+            )
+            action_label = "EXPLORE PAYMENT DEMO  →"
+
         st.button(
-            "EXPLORE TEST LAB  →",
+            action_label,
             key="explore_selected",
             type="primary",
             use_container_width=True,
             on_click=lambda target=destination: st.session_state.update(
                 workspace=target
             ),
+        )
+        st.caption(
+            "Uses supplied synthetic outputs and deterministic controls. "
+            "No live chatbot, payment processing or operator connection."
         )
     st.caption(
         "Only the two implemented DEP_02 control labs can be selected. "
